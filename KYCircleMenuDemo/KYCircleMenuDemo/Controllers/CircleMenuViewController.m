@@ -27,6 +27,9 @@
 {
   [super viewDidLoad];
   
+  // Set root menu's title
+  [self setTitle:@"KYCircleMenu"];
+  
   // Set Buttons' style in center menu view
   for (UIButton * button in [self.centerMenu subviews]) {
     [button setImage:[UIImage imageNamed:[NSString stringWithFormat:kKYICircleMenuButton, button.tag]]
@@ -46,10 +49,15 @@
 - (void)runButtonActions:(id)sender {
   [super runButtonActions:sender];
   
-  NSLog(@"%d", [sender tag]);
-  
-  // Change |centerMainButton_|'s status
+  // change |centerMainButton_|'s status
   [self changeCenterMainButtonStatusToMove:kCenterMainButtonStatusAtBottom];
+  
+  // configure new view & push it with custom |pushViewController:| method
+  UIViewController * viewController = [[UIViewController alloc] init];
+  [viewController.view setBackgroundColor:[UIColor blackColor]];
+  [viewController setTitle:[NSString stringWithFormat:@"%d", [sender tag]]];
+  [self pushViewController:viewController];
+  [viewController release];
 }
 
 @end
