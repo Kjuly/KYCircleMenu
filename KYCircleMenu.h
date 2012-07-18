@@ -20,8 +20,7 @@
 // For |centerMainButton_| status
 typedef enum {
   kCenterMainButtonStatusNormal = 0,
-  kCenterMainButtonStatusAtBottom,
-  kCenterMainButtonStatusPokemonAppeared
+  kCenterMainButtonStatusAtBottom
 }CenterMainButtonStatus;
 
 // Notification Name
@@ -32,17 +31,19 @@ typedef enum {
   UIView * centerMenu_;
   BOOL      isOpening_;
   BOOL isInProcessing_;
+  BOOL      isClosed_;
 }
 
 @property (nonatomic, retain) UIView * centerMenu;
 @property (nonatomic, assign) BOOL     isOpening;
 @property (nonatomic, assign) BOOL     isInProcessing;
+@property (nonatomic, assign) BOOL     isClosed;
 
 - (id)initWithButtonCount:(NSInteger)buttonCount;
 - (void)runButtonActions:(id)sender;
 - (void)pushViewController:(id)viewController;
 //- (void)checkDeviceSystemFor:(id)viewController;
 - (void)openCenterMenuView;
-- (void)changeCenterMainButtonStatusToMove:(CenterMainButtonStatus)centerMainButtonStatus;
+- (void)recoverToNormalStatus;
 
 @end

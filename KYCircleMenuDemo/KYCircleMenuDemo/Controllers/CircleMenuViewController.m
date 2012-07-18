@@ -38,6 +38,20 @@
   }
 }
 
+- (void)viewDidUnload {
+  [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  if (! self.isClosed)
+    // recover circle menu to normal status
+    [self performSelector:@selector(recoverToNormalStatus)
+               withObject:nil
+               afterDelay:.3f];
+}
+
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
@@ -48,9 +62,6 @@
 
 - (void)runButtonActions:(id)sender {
   [super runButtonActions:sender];
-  
-  // change |centerMainButton_|'s status
-  [self changeCenterMainButtonStatusToMove:kCenterMainButtonStatusAtBottom];
   
   // configure new view & push it with custom |pushViewController:| method
   UIViewController * viewController = [[UIViewController alloc] init];

@@ -14,7 +14,6 @@
   
   NSInteger buttonCount_;
   CGRect    buttonOriginFrame_;
-  BOOL      isClosed_;
 }
 
 @property (nonatomic, retain) UIButton * mainButton;
@@ -33,6 +32,7 @@
 @synthesize centerMenu     = centerMenu_;
 @synthesize isOpening      = isOpening_;
 @synthesize isInProcessing = isInProcessing_;
+@synthesize isClosed       = isClosed_;
 
 @synthesize mainButton = mainButton_;
 
@@ -222,36 +222,27 @@
                    }];
 }
 
+// Recover to normal status
 // Change |centerMainButton_|'s status in main view
-- (void)changeCenterMainButtonStatusToMove:(CenterMainButtonStatus)centerMainButtonStatus {
-  // |centerMainButtonStatus : 1|, move |centerMainButton_| to view bottom
-  NSDictionary * userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
-                             [NSNumber numberWithInt:centerMainButtonStatus], @"centerMainButtonStatus", nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:kKYNChangeCenterMainButtonStatus
-                                                      object:self
-                                                    userInfo:userInfo];
-  [userInfo release];
-  
-  // If change |centerMainButton_|'s status to normal,
-  // do |recoverButtonsLayoutInCenterView| (this method was removed)
-  if (centerMainButtonStatus == kCenterMainButtonStatusNormal)
-    [UIView animateWithDuration:.3f
-                          delay:0.f
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                       // Show buttons & slide in to center
-                       [self.centerMenu setAlpha:1.f];
-                       [self computeAndSetButtonLayoutWithTriangleHypotenuse:100.f];
-                     }
-                     completion:^(BOOL finished) {
-                       [UIView animateWithDuration:.1f
-                                             delay:0.f
-                                           options:UIViewAnimationOptionCurveEaseInOut
-                                        animations:^{
-                                          [self computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
-                                        }
-                                        completion:nil];
-                     }];
+//- (void)changeCenterMainButtonStatusToMove:(CenterMainButtonStatus)centerMainButtonStatus {
+- (void)recoverToNormalStatus {
+  [UIView animateWithDuration:.3f
+                        delay:0.f
+                      options:UIViewAnimationOptionCurveEaseInOut
+                   animations:^{
+                     // Show buttons & slide in to center
+                     [self.centerMenu setAlpha:1.f];
+                     [self computeAndSetButtonLayoutWithTriangleHypotenuse:100.f];
+                   }
+                   completion:^(BOOL finished) {
+                     [UIView animateWithDuration:.1f
+                                           delay:0.f
+                                         options:UIViewAnimationOptionCurveEaseInOut
+                                      animations:^{
+                                        [self computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
+                                      }
+                                      completion:nil];
+                   }];
 }
 
 #pragma mark - Private Methods
