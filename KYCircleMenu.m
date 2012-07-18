@@ -77,7 +77,11 @@
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-  UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeigth)];
+  UIView * view = [[UIView alloc] init];
+  if (self.navigationController == nil)
+    [view setFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeight)];
+  else
+    [view setFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeight - kKYNavigationBarHeight)];
   self.view = view;
   [view release];
 }
@@ -86,8 +90,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  CGFloat viewHeight = CGRectGetHeight(self.view.frame);
+  CGFloat viewWidth  = CGRectGetWidth(self.view.frame);
+  
   // Center Menu View
-  CGRect centerMenuFrame = CGRectMake((kKYViewWidth - kKYCenterMenuSize) / 2, (kKYViewHeigth - kKYCenterMenuSize) / 2, kKYCenterMenuSize, kKYCenterMenuSize);
+  CGRect centerMenuFrame = CGRectMake((viewWidth - kKYCenterMenuSize) / 2, (viewHeight - kKYCenterMenuSize) / 2, kKYCenterMenuSize, kKYCenterMenuSize);
   UIView * centerMenu = [[UIView alloc] initWithFrame:centerMenuFrame];
   [centerMenu setAlpha:0.f];
   self.centerMenu = centerMenu;

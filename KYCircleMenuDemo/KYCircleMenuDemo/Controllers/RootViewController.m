@@ -12,18 +12,22 @@
 
 @interface RootViewController () {
  @private
+  UINavigationController   * navigationController_;
   CircleMenuViewController * circleMenuViewController_;
 }
 
+@property (nonatomic, retain) UINavigationController   * navigationController;
 @property (nonatomic, retain) CircleMenuViewController * circleMenuViewController;
 
 @end
 
 @implementation RootViewController
 
+@synthesize navigationController     = navigationController_;
 @synthesize circleMenuViewController = circleMenuViewController_;
 
 - (void)dealloc {
+  self.navigationController     = nil;
   self.circleMenuViewController = nil;
   [super dealloc];
 }
@@ -38,7 +42,7 @@
 }
 
 - (void)loadView {
-  UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeigth)];
+  UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeight)];
   self.view = view;
   [view release];
 }
@@ -48,10 +52,15 @@
   [super viewDidLoad];
 	// Do any additional setup after loading the view.
   
+  // Circle Menu
   CircleMenuViewController * circleMenuViewController;
   circleMenuViewController = [[CircleMenuViewController alloc] initWithButtonCount:6];
   self.circleMenuViewController = circleMenuViewController;
   [circleMenuViewController release];
+  
+  // Navigation Controller
+  navigationController_ = [UINavigationController alloc];
+  [navigationController_ initWithRootViewController:self.circleMenuViewController];
   [self.view addSubview:self.circleMenuViewController.view];
 }
 

@@ -21,7 +21,7 @@
 #define kKYKeyboardHeight 216.f
 
 // App View Basic
-#define kKYViewHeigth 460.f
+#define kKYViewHeight 460.f
 #define kKYViewWidth  320.f
 
 #define kKYContentMargin 10.f

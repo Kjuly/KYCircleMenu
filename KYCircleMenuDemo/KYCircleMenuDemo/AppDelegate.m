@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "RootViewController.h"
+#import "CircleMenuViewController.h"
 
 @implementation AppDelegate
 
@@ -22,11 +23,18 @@
 {
   self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   // Override point for customization after application launch.
-  // Root ViewController
-  RootViewController * rootViewController;
-  rootViewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-  [self.window setRootViewController:rootViewController];
-  [rootViewController release];
+  
+  // Navigation Controller
+  UINavigationController * navigationController = [UINavigationController alloc];
+  // Circle Menu
+  CircleMenuViewController * circleMenuViewController;
+  circleMenuViewController = [CircleMenuViewController alloc];
+  [navigationController initWithRootViewController:circleMenuViewController];
+  [circleMenuViewController initWithButtonCount:6];
+  [circleMenuViewController release];
+  [self.window setRootViewController:navigationController];
+  [navigationController release];
+  
   [self.window makeKeyAndVisible];
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
   return YES;
