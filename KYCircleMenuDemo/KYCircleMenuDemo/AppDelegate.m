@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 
-#import "RootViewController.h"
 #import "CircleMenuViewController.h"
 
 @implementation AppDelegate

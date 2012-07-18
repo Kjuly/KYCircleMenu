@@ -15,7 +15,6 @@
 		7F23CE9815B6B11800C99EA5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CE9715B6B11800C99EA5 /* AppDelegate.m */; };
 		7F23CEA115B6B18500C99EA5 /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */; };
 		7F23CEA415B6B22600C99EA5 /* KYConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA315B6B22600C99EA5 /* KYConstants.m */; };
-		7F23CEA815B6B4E300C99EA5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA715B6B4E300C99EA5 /* RootViewController.m */; };
 		7F23CEAB15B6BABD00C99EA5 /* CircleMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEAA15B6BABD00C99EA5 /* CircleMenuViewController.m */; };
 		7F23CEBA15B6BE7000C99EA5 /* KYICircleMenuButton01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */; };
 		7F23CEBB15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEAF15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png */; };
@@ -50,8 +49,6 @@
 		7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KYCircleMenu.m; path = ../../../KYCircleMenu.m; sourceTree = "<group>"; };
 		7F23CEA215B6B22500C99EA5 /* KYConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYConstants.h; sourceTree = "<group>"; };
 		7F23CEA315B6B22600C99EA5 /* KYConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYConstants.m; sourceTree = "<group>"; };
-		7F23CEA615B6B4E300C99EA5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		7F23CEA715B6B4E300C99EA5 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		7F23CEA915B6BABD00C99EA5 /* CircleMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleMenuViewController.h; sourceTree = "<group>"; };
 		7F23CEAA15B6BABD00C99EA5 /* CircleMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleMenuViewController.m; sourceTree = "<group>"; };
 		7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton01.png; sourceTree = "<group>"; };
@@ -152,8 +149,6 @@
 		7F23CEA515B6B4D100C99EA5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7F23CEA615B6B4E300C99EA5 /* RootViewController.h */,
-				7F23CEA715B6B4E300C99EA5 /* RootViewController.m */,
 				7F23CEA915B6BABD00C99EA5 /* CircleMenuViewController.h */,
 				7F23CEAA15B6BABD00C99EA5 /* CircleMenuViewController.m */,
 			);
@@ -281,7 +276,6 @@
 				7F23CE9815B6B11800C99EA5 /* AppDelegate.m in Sources */,
 				7F23CEA115B6B18500C99EA5 /* KYCircleMenu.m in Sources */,
 				7F23CEA415B6B22600C99EA5 /* KYConstants.m in Sources */,
-				7F23CEA815B6B4E300C99EA5 /* RootViewController.m in Sources */,
 				7F23CEAB15B6BABD00C99EA5 /* CircleMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +382,7 @@
 				7F23CE9D15B6B11800C99EA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
