@@ -39,7 +39,6 @@
 
 - (void)loadView {
   UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeigth)];
-  [view setBackgroundColor:[UIColor grayColor]];
   self.view = view;
   [view release];
 }
@@ -53,9 +52,7 @@
   circleMenuViewController = [[CircleMenuViewController alloc] initWithButtonCount:6];
   self.circleMenuViewController = circleMenuViewController;
   [circleMenuViewController release];
-  
   [self.view addSubview:self.circleMenuViewController.view];
-  [self.circleMenuViewController openCenterMenuView];
 }
 
 - (void)didReceiveMemoryWarning

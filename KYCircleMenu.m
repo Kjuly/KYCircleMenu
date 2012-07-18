@@ -10,11 +10,17 @@
 
 @interface KYCircleMenu () {
  @private
+  UIButton * mainButton_;
+  
   NSInteger buttonCount_;
   CGRect    buttonOriginFrame_;
   BOOL      isClosed_;
 }
 
+@property (nonatomic, retain) UIButton * mainButton;
+
+- (void)_releaseSubviews;
+- (void)_toggleCircleMenu:(id)sender;
 - (void)closeCenterMenuView:(NSNotification *)notification;
 - (void)computeAndSetButtonLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse;
 - (void)setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin;
@@ -28,11 +34,18 @@
 @synthesize isOpening      = isOpening_;
 @synthesize isInProcessing = isInProcessing_;
 
+@synthesize mainButton = mainButton_;
+
 -(void)dealloc {
-  self.centerMenu = nil;
-  // Remove Notification Observer
+  // Release subvies & remove notification observer
+  [self _releaseSubviews];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:kKYNCloseCenterMenu object:nil];
   [super dealloc];
+}
+
+- (void)_releaseSubviews {
+  self.centerMenu = nil;
+  self.mainButton = nil;
 }
 
 - (id)initWithButtonCount:(NSInteger)buttonCount {
@@ -65,13 +78,21 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
   UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeigth)];
+  self.view = view;
+  [view release];
+}
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+  [super viewDidLoad];
   
   // Center Menu View
   CGRect centerMenuFrame = CGRectMake((kKYViewWidth - kKYCenterMenuSize) / 2, (kKYViewHeigth - kKYCenterMenuSize) / 2, kKYCenterMenuSize, kKYCenterMenuSize);
   UIView * centerMenu = [[UIView alloc] initWithFrame:centerMenuFrame];
+  [centerMenu setAlpha:0.f];
   self.centerMenu = centerMenu;
   [centerMenu release];
-  [view addSubview:self.centerMenu];
+  [self.view addSubview:self.centerMenu];
   
   // Add buttons to |ballMenu_|, set it's origin frame to center
   buttonOriginFrame_ = CGRectMake((kKYCenterMenuSize - kKYCenterMainButtonSize) / 2,
@@ -87,13 +108,22 @@
     [button release];
   }
   
-  self.view = view;
-  [view release];
-}
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-  [super viewDidLoad];
+  // main button
+  CGRect mainButtonFrame =
+    CGRectMake((CGRectGetWidth(self.view.frame) - kKYCenterMenuButtonSize) / 2.f,
+               (CGRectGetHeight(self.view.frame) - kKYCenterMenuButtonSize) / 2.f,
+               kKYCenterMenuButtonSize,
+               kKYCenterMenuButtonSize);
+  mainButton_ = [[UIButton alloc] initWithFrame:mainButtonFrame];
+  [mainButton_ setBackgroundImage:[UIImage imageNamed:kKYICircleMainButtonBackground]
+                         forState:UIControlStateNormal];
+  [mainButton_ setImage:[UIImage imageNamed:kKYICircleMainButtonNormal]
+               forState:UIControlStateNormal];
+  [mainButton_ addTarget:self
+                  action:@selector(_toggleCircleMenu:)
+        forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:mainButton_];
+  
   
   // Add Observer for close self
   // If |centerMainButton_| post cancel notification, do it
@@ -219,6 +249,12 @@
 
 #pragma mark - Private Methods
 
+// Toggle Circle Menu
+- (void)_toggleCircleMenu:(id)sender {
+  if (isClosed_) [self openCenterMenuView];
+  else           [self closeCenterMenuView:nil];
+}
+
 // Close center menu view
 - (void)closeCenterMenuView:(NSNotification *)notification {
   if (isClosed_)
@@ -234,12 +270,14 @@
                      [self.centerMenu setAlpha:0.f];
                    }
                    completion:^(BOOL finished) {
+                     /*
                      if (self.navigationController)
                        [self.navigationController.view removeFromSuperview];
 //                       [self.navigationController removeFromParentViewController];
                      else
                        [self.view removeFromSuperview];
 //                       [self removeFromParentViewController];
+                      */
                      isClosed_       = YES;
                      isOpening_      = NO;
                      isInProcessing_ = NO;

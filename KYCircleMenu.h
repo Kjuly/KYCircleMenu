@@ -13,6 +13,10 @@
 #define kKYCenterMenuSize       305.0f
 #define kKYCenterMenuButtonSize 64.0f
 
+// Image Name
+#define kKYICircleMainButtonNormal     @"KYICircleMainButtonNormal.png"
+#define kKYICircleMainButtonBackground @"KYICircleMainButtonBackground.png"
+
 // For |centerMainButton_| status
 typedef enum {
   kCenterMainButtonStatusNormal = 0,

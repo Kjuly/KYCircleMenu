@@ -28,6 +28,7 @@
   [self.window setRootViewController:rootViewController];
   [rootViewController release];
   [self.window makeKeyAndVisible];
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
   return YES;
 }
 
