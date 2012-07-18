@@ -8,7 +8,10 @@
 
 #import "CircleMenuViewController.h"
 
-@interface CircleMenuViewController ()
+@interface CircleMenuViewController () {
+ @private
+  NSTimeInterval delayTimeForRecoveringToNormalStatus_;
+}
 
 @end
 
@@ -30,6 +33,9 @@
   // Set root menu's title
   [self setTitle:@"KYCircleMenu"];
   
+  // set delay time for recovering to normal status
+  delayTimeForRecoveringToNormalStatus_ = (self.navigationController == nil ? 0.f : .3f);
+  
   // Set Buttons' style in center menu view
   for (UIButton * button in [self.centerMenu subviews]) {
     [button setImage:[UIImage imageNamed:[NSString stringWithFormat:kKYICircleMenuButton, button.tag]]
@@ -49,7 +55,7 @@
     // recover circle menu to normal status
     [self performSelector:@selector(recoverToNormalStatus)
                withObject:nil
-               afterDelay:.3f];
+               afterDelay:delayTimeForRecoveringToNormalStatus_];
 }
 
 - (void)didReceiveMemoryWarning
