@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F23CE8815B6B11800C99EA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F23CE8715B6B11800C99EA5 /* UIKit.framework */; };
+		7F23CE8A15B6B11800C99EA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F23CE8915B6B11800C99EA5 /* Foundation.framework */; };
+		7F23CE8C15B6B11800C99EA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F23CE8B15B6B11800C99EA5 /* CoreGraphics.framework */; };
+		7F23CE9215B6B11800C99EA5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CE9015B6B11800C99EA5 /* InfoPlist.strings */; };
+		7F23CE9415B6B11800C99EA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CE9315B6B11800C99EA5 /* main.m */; };
+		7F23CE9815B6B11800C99EA5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CE9715B6B11800C99EA5 /* AppDelegate.m */; };
+		7F23CEA115B6B18500C99EA5 /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */; };
+		7F23CEA415B6B22600C99EA5 /* KYConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA315B6B22600C99EA5 /* KYConstants.m */; };
+		7F23CEA815B6B4E300C99EA5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA715B6B4E300C99EA5 /* RootViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7F23CE8315B6B11800C99EA5 /* KYCircleMenuDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KYCircleMenuDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F23CE8715B6B11800C99EA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7F23CE8915B6B11800C99EA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7F23CE8B15B6B11800C99EA5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7F23CE8F15B6B11800C99EA5 /* KYCircleMenuDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KYCircleMenuDemo-Info.plist"; sourceTree = "<group>"; };
+		7F23CE9115B6B11800C99EA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7F23CE9315B6B11800C99EA5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7F23CE9515B6B11800C99EA5 /* KYCircleMenuDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KYCircleMenuDemo-Prefix.pch"; sourceTree = "<group>"; };
+		7F23CE9615B6B11800C99EA5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7F23CE9715B6B11800C99EA5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7F23CE9F15B6B18400C99EA5 /* KYCircleMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCircleMenu.h; path = ../../../KYCircleMenu.h; sourceTree = "<group>"; };
+		7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KYCircleMenu.m; path = ../../../KYCircleMenu.m; sourceTree = "<group>"; };
+		7F23CEA215B6B22500C99EA5 /* KYConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYConstants.h; sourceTree = "<group>"; };
+		7F23CEA315B6B22600C99EA5 /* KYConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYConstants.m; sourceTree = "<group>"; };
+		7F23CEA615B6B4E300C99EA5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		7F23CEA715B6B4E300C99EA5 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F23CE8015B6B11800C99EA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F23CE8815B6B11800C99EA5 /* UIKit.framework in Frameworks */,
+				7F23CE8A15B6B11800C99EA5 /* Foundation.framework in Frameworks */,
+				7F23CE8C15B6B11800C99EA5 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F23CE7815B6B11800C99EA5 = {
+			isa = PBXGroup;
+			children = (
+				7F23CE8D15B6B11800C99EA5 /* KYCircleMenuDemo */,
+				7F23CE8615B6B11800C99EA5 /* Frameworks */,
+				7F23CE8415B6B11800C99EA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7F23CE8415B6B11800C99EA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F23CE8315B6B11800C99EA5 /* KYCircleMenuDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F23CE8615B6B11800C99EA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F23CE8715B6B11800C99EA5 /* UIKit.framework */,
+				7F23CE8915B6B11800C99EA5 /* Foundation.framework */,
+				7F23CE8B15B6B11800C99EA5 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7F23CE8D15B6B11800C99EA5 /* KYCircleMenuDemo */ = {
+			isa = PBXGroup;
+			children = (
+				7F23CE9615B6B11800C99EA5 /* AppDelegate.h */,
+				7F23CE9715B6B11800C99EA5 /* AppDelegate.m */,
+				7F23CEA215B6B22500C99EA5 /* KYConstants.h */,
+				7F23CEA315B6B22600C99EA5 /* KYConstants.m */,
+				7F23CEA515B6B4D100C99EA5 /* Controllers */,
+				7F23CE9E15B6B17400C99EA5 /* Libs */,
+				7F23CE8E15B6B11800C99EA5 /* Supporting Files */,
+			);
+			path = KYCircleMenuDemo;
+			sourceTree = "<group>";
+		};
+		7F23CE8E15B6B11800C99EA5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F23CE8F15B6B11800C99EA5 /* KYCircleMenuDemo-Info.plist */,
+				7F23CE9015B6B11800C99EA5 /* InfoPlist.strings */,
+				7F23CE9315B6B11800C99EA5 /* main.m */,
+				7F23CE9515B6B11800C99EA5 /* KYCircleMenuDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7F23CE9E15B6B17400C99EA5 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				7F23CE9F15B6B18400C99EA5 /* KYCircleMenu.h */,
+				7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		7F23CEA515B6B4D100C99EA5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7F23CEA615B6B4E300C99EA5 /* RootViewController.h */,
+				7F23CEA715B6B4E300C99EA5 /* RootViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F23CE8215B6B11800C99EA5 /* KYCircleMenuDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F23CE9B15B6B11800C99EA5 /* Build configuration list for PBXNativeTarget "KYCircleMenuDemo" */;
+			buildPhases = (
+				7F23CE7F15B6B11800C99EA5 /* Sources */,
+				7F23CE8015B6B11800C99EA5 /* Frameworks */,
+				7F23CE8115B6B11800C99EA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KYCircleMenuDemo;
+			productName = KYCircleMenuDemo;
+			productReference = 7F23CE8315B6B11800C99EA5 /* KYCircleMenuDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F23CE7A15B6B11800C99EA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Kjuly;
+			};
+			buildConfigurationList = 7F23CE7D15B6B11800C99EA5 /* Build configuration list for PBXProject "KYCircleMenuDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7F23CE7815B6B11800C99EA5;
+			productRefGroup = 7F23CE8415B6B11800C99EA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F23CE8215B6B11800C99EA5 /* KYCircleMenuDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F23CE8115B6B11800C99EA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F23CE9215B6B11800C99EA5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F23CE7F15B6B11800C99EA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F23CE9415B6B11800C99EA5 /* main.m in Sources */,
+				7F23CE9815B6B11800C99EA5 /* AppDelegate.m in Sources */,
+				7F23CEA115B6B18500C99EA5 /* KYCircleMenu.m in Sources */,
+				7F23CEA415B6B22600C99EA5 /* KYConstants.m in Sources */,
+				7F23CEA815B6B4E300C99EA5 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7F23CE9015B6B11800C99EA5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F23CE9115B6B11800C99EA5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7F23CE9915B6B11800C99EA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7F23CE9A15B6B11800C99EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7F23CE9C15B6B11800C99EA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KYCircleMenuDemo/KYCircleMenuDemo-Prefix.pch";
+				INFOPLIST_FILE = "KYCircleMenuDemo/KYCircleMenuDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7F23CE9D15B6B11800C99EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KYCircleMenuDemo/KYCircleMenuDemo-Prefix.pch";
+				INFOPLIST_FILE = "KYCircleMenuDemo/KYCircleMenuDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F23CE7D15B6B11800C99EA5 /* Build configuration list for PBXProject "KYCircleMenuDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F23CE9915B6B11800C99EA5 /* Debug */,
+				7F23CE9A15B6B11800C99EA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F23CE9B15B6B11800C99EA5 /* Build configuration list for PBXNativeTarget "KYCircleMenuDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F23CE9C15B6B11800C99EA5 /* Debug */,
+				7F23CE9D15B6B11800C99EA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7F23CE7A15B6B11800C99EA5 /* Project object */;
+}
