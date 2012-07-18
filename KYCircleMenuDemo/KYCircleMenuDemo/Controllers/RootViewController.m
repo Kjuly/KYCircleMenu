@@ -8,11 +8,25 @@
 
 #import "RootViewController.h"
 
-@interface RootViewController ()
+#import "CircleMenuViewController.h"
+
+@interface RootViewController () {
+ @private
+  CircleMenuViewController * circleMenuViewController_;
+}
+
+@property (nonatomic, retain) CircleMenuViewController * circleMenuViewController;
 
 @end
 
 @implementation RootViewController
+
+@synthesize circleMenuViewController = circleMenuViewController_;
+
+- (void)dealloc {
+  self.circleMenuViewController = nil;
+  [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +48,14 @@
 {
   [super viewDidLoad];
 	// Do any additional setup after loading the view.
+  
+  CircleMenuViewController * circleMenuViewController;
+  circleMenuViewController = [[CircleMenuViewController alloc] initWithButtonCount:6];
+  self.circleMenuViewController = circleMenuViewController;
+  [circleMenuViewController release];
+  
+  [self.view addSubview:self.circleMenuViewController.view];
+  [self.circleMenuViewController openCenterMenuView];
 }
 
 - (void)didReceiveMemoryWarning

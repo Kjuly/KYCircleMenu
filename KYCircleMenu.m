@@ -71,9 +71,6 @@
   UIView * centerMenu = [[UIView alloc] initWithFrame:centerMenuFrame];
   self.centerMenu = centerMenu;
   [centerMenu release];
-  [self.centerMenu setBackgroundColor:[UIColor blackColor]];
-  [self.centerMenu setOpaque:NO];
-  [self.centerMenu setAlpha:0.f];
   [view addSubview:self.centerMenu];
   
   // Add buttons to |ballMenu_|, set it's origin frame to center

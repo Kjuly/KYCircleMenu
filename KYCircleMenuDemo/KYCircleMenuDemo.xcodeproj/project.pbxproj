@@ -16,6 +16,19 @@
 		7F23CEA115B6B18500C99EA5 /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */; };
 		7F23CEA415B6B22600C99EA5 /* KYConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA315B6B22600C99EA5 /* KYConstants.m */; };
 		7F23CEA815B6B4E300C99EA5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA715B6B4E300C99EA5 /* RootViewController.m */; };
+		7F23CEAB15B6BABD00C99EA5 /* CircleMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEAA15B6BABD00C99EA5 /* CircleMenuViewController.m */; };
+		7F23CEBA15B6BE7000C99EA5 /* KYICircleMenuButton01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */; };
+		7F23CEBB15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEAF15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png */; };
+		7F23CEBC15B6BE7000C99EA5 /* KYICircleMenuButton02.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB015B6BE7000C99EA5 /* KYICircleMenuButton02.png */; };
+		7F23CEBD15B6BE7000C99EA5 /* KYICircleMenuButton02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB115B6BE7000C99EA5 /* KYICircleMenuButton02@2x.png */; };
+		7F23CEBE15B6BE7000C99EA5 /* KYICircleMenuButton03.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB215B6BE7000C99EA5 /* KYICircleMenuButton03.png */; };
+		7F23CEBF15B6BE7000C99EA5 /* KYICircleMenuButton03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB315B6BE7000C99EA5 /* KYICircleMenuButton03@2x.png */; };
+		7F23CEC015B6BE7000C99EA5 /* KYICircleMenuButton04.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB415B6BE7000C99EA5 /* KYICircleMenuButton04.png */; };
+		7F23CEC115B6BE7000C99EA5 /* KYICircleMenuButton04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB515B6BE7000C99EA5 /* KYICircleMenuButton04@2x.png */; };
+		7F23CEC215B6BE7000C99EA5 /* KYICircleMenuButton05.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB615B6BE7000C99EA5 /* KYICircleMenuButton05.png */; };
+		7F23CEC315B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB715B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png */; };
+		7F23CEC415B6BE7000C99EA5 /* KYICircleMenuButton06.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB815B6BE7000C99EA5 /* KYICircleMenuButton06.png */; };
+		7F23CEC515B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB915B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +48,20 @@
 		7F23CEA315B6B22600C99EA5 /* KYConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYConstants.m; sourceTree = "<group>"; };
 		7F23CEA615B6B4E300C99EA5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		7F23CEA715B6B4E300C99EA5 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		7F23CEA915B6BABD00C99EA5 /* CircleMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleMenuViewController.h; sourceTree = "<group>"; };
+		7F23CEAA15B6BABD00C99EA5 /* CircleMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleMenuViewController.m; sourceTree = "<group>"; };
+		7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton01.png; sourceTree = "<group>"; };
+		7F23CEAF15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton01@2x.png"; sourceTree = "<group>"; };
+		7F23CEB015B6BE7000C99EA5 /* KYICircleMenuButton02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton02.png; sourceTree = "<group>"; };
+		7F23CEB115B6BE7000C99EA5 /* KYICircleMenuButton02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton02@2x.png"; sourceTree = "<group>"; };
+		7F23CEB215B6BE7000C99EA5 /* KYICircleMenuButton03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton03.png; sourceTree = "<group>"; };
+		7F23CEB315B6BE7000C99EA5 /* KYICircleMenuButton03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton03@2x.png"; sourceTree = "<group>"; };
+		7F23CEB415B6BE7000C99EA5 /* KYICircleMenuButton04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton04.png; sourceTree = "<group>"; };
+		7F23CEB515B6BE7000C99EA5 /* KYICircleMenuButton04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton04@2x.png"; sourceTree = "<group>"; };
+		7F23CEB615B6BE7000C99EA5 /* KYICircleMenuButton05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton05.png; sourceTree = "<group>"; };
+		7F23CEB715B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton05@2x.png"; sourceTree = "<group>"; };
+		7F23CEB815B6BE7000C99EA5 /* KYICircleMenuButton06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton06.png; sourceTree = "<group>"; };
+		7F23CEB915B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton06@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +114,7 @@
 				7F23CEA315B6B22600C99EA5 /* KYConstants.m */,
 				7F23CEA515B6B4D100C99EA5 /* Controllers */,
 				7F23CE9E15B6B17400C99EA5 /* Libs */,
+				7F23CEAC15B6BE7000C99EA5 /* Resources */,
 				7F23CE8E15B6B11800C99EA5 /* Supporting Files */,
 			);
 			path = KYCircleMenuDemo;
@@ -117,8 +145,38 @@
 			children = (
 				7F23CEA615B6B4E300C99EA5 /* RootViewController.h */,
 				7F23CEA715B6B4E300C99EA5 /* RootViewController.m */,
+				7F23CEA915B6BABD00C99EA5 /* CircleMenuViewController.h */,
+				7F23CEAA15B6BABD00C99EA5 /* CircleMenuViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7F23CEAC15B6BE7000C99EA5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7F23CEAD15B6BE7000C99EA5 /* Images */,
+			);
+			name = Resources;
+			path = KYCircleMenuDemo/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		7F23CEAD15B6BE7000C99EA5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */,
+				7F23CEAF15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png */,
+				7F23CEB015B6BE7000C99EA5 /* KYICircleMenuButton02.png */,
+				7F23CEB115B6BE7000C99EA5 /* KYICircleMenuButton02@2x.png */,
+				7F23CEB215B6BE7000C99EA5 /* KYICircleMenuButton03.png */,
+				7F23CEB315B6BE7000C99EA5 /* KYICircleMenuButton03@2x.png */,
+				7F23CEB415B6BE7000C99EA5 /* KYICircleMenuButton04.png */,
+				7F23CEB515B6BE7000C99EA5 /* KYICircleMenuButton04@2x.png */,
+				7F23CEB615B6BE7000C99EA5 /* KYICircleMenuButton05.png */,
+				7F23CEB715B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png */,
+				7F23CEB815B6BE7000C99EA5 /* KYICircleMenuButton06.png */,
+				7F23CEB915B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +231,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F23CE9215B6B11800C99EA5 /* InfoPlist.strings in Resources */,
+				7F23CEBA15B6BE7000C99EA5 /* KYICircleMenuButton01.png in Resources */,
+				7F23CEBB15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png in Resources */,
+				7F23CEBC15B6BE7000C99EA5 /* KYICircleMenuButton02.png in Resources */,
+				7F23CEBD15B6BE7000C99EA5 /* KYICircleMenuButton02@2x.png in Resources */,
+				7F23CEBE15B6BE7000C99EA5 /* KYICircleMenuButton03.png in Resources */,
+				7F23CEBF15B6BE7000C99EA5 /* KYICircleMenuButton03@2x.png in Resources */,
+				7F23CEC015B6BE7000C99EA5 /* KYICircleMenuButton04.png in Resources */,
+				7F23CEC115B6BE7000C99EA5 /* KYICircleMenuButton04@2x.png in Resources */,
+				7F23CEC215B6BE7000C99EA5 /* KYICircleMenuButton05.png in Resources */,
+				7F23CEC315B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png in Resources */,
+				7F23CEC415B6BE7000C99EA5 /* KYICircleMenuButton06.png in Resources */,
+				7F23CEC515B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +258,7 @@
 				7F23CEA115B6B18500C99EA5 /* KYCircleMenu.m in Sources */,
 				7F23CEA415B6B22600C99EA5 /* KYConstants.m in Sources */,
 				7F23CEA815B6B4E300C99EA5 /* RootViewController.m in Sources */,
+				7F23CEAB15B6BABD00C99EA5 /* CircleMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
