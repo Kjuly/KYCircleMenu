@@ -8,24 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-// View Constants
+// Notification Name - Prefix: kKYN
+#define kKYNCloseCenterMenu              @"KYNCloseCenterMenu"
+#define kKYNChangeCenterMainButtonStatus @"KYNChangeCenterMainButtonStatus"
+
+// Image Name - Prefix: kKYI
+#define kKYICircleMenuMainButtonNormal     @"KYICircleMenuMainButtonNormal.png"
+#define kKYICircleMenuMainButtonBackground @"KYICircleMenuMainButtonBackground.png"
+
+// View Constants - Prefix: kKY
 #define kKYCircleMenuMainButtonSize 64.f
 #define kKYCircleMenuSize           305.f
 #define kKYCircleMenuButtonSize     64.f
 
-// Image Name
-#define kKYICircleMainButtonNormal     @"KYICircleMainButtonNormal.png"
-#define kKYICircleMainButtonBackground @"KYICircleMainButtonBackground.png"
-
-// For |centerMainButton_| status
-typedef enum {
-  kCenterMainButtonStatusNormal = 0,
-  kCenterMainButtonStatusAtBottom
-}CenterMainButtonStatus;
-
-// Notification Name
-#define kKYNCloseCenterMenu              @"KYNCloseCenterMenu"
-#define kKYNChangeCenterMainButtonStatus @"KYNChangeCenterMainButtonStatus"
 
 @interface KYCircleMenu : UIViewController {
   UIView * centerMenu_;

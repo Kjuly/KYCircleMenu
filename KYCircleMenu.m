@@ -126,9 +126,9 @@
                kKYCircleMenuMainButtonSize,
                kKYCircleMenuMainButtonSize);
   mainButton_ = [[UIButton alloc] initWithFrame:mainButtonFrame];
-  [mainButton_ setBackgroundImage:[UIImage imageNamed:kKYICircleMainButtonBackground]
+  [mainButton_ setBackgroundImage:[UIImage imageNamed:kKYICircleMenuMainButtonBackground]
                          forState:UIControlStateNormal];
-  [mainButton_ setImage:[UIImage imageNamed:kKYICircleMainButtonNormal]
+  [mainButton_ setImage:[UIImage imageNamed:kKYICircleMenuMainButtonNormal]
                forState:UIControlStateNormal];
   [mainButton_ addTarget:self
                   action:@selector(_toggleCircleMenu:)

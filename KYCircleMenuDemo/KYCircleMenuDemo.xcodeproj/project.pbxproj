@@ -28,10 +28,10 @@
 		7F23CEC315B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB715B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png */; };
 		7F23CEC415B6BE7000C99EA5 /* KYICircleMenuButton06.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB815B6BE7000C99EA5 /* KYICircleMenuButton06.png */; };
 		7F23CEC515B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB915B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png */; };
-		7F23CECE15B6E13500C99EA5 /* KYICircleMainButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CECA15B6E13500C99EA5 /* KYICircleMainButtonBackground.png */; };
-		7F23CED515B6E18500C99EA5 /* KYICircleMainButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED215B6E18300C99EA5 /* KYICircleMainButtonBackground@2x.png */; };
-		7F23CED615B6E18500C99EA5 /* KYICircleMainButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED315B6E18400C99EA5 /* KYICircleMainButtonNormal.png */; };
-		7F23CED715B6E18500C99EA5 /* KYICircleMainButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED415B6E18400C99EA5 /* KYICircleMainButtonNormal@2x.png */; };
+		7F23CECE15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CECA15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png */; };
+		7F23CED515B6E18500C99EA5 /* KYICircleMenuMainButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED215B6E18300C99EA5 /* KYICircleMenuMainButtonBackground@2x.png */; };
+		7F23CED615B6E18500C99EA5 /* KYICircleMenuMainButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED315B6E18400C99EA5 /* KYICircleMenuMainButtonNormal.png */; };
+		7F23CED715B6E18500C99EA5 /* KYICircleMenuMainButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED415B6E18400C99EA5 /* KYICircleMenuMainButtonNormal@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,10 +63,10 @@
 		7F23CEB715B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton05@2x.png"; sourceTree = "<group>"; };
 		7F23CEB815B6BE7000C99EA5 /* KYICircleMenuButton06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton06.png; sourceTree = "<group>"; };
 		7F23CEB915B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton06@2x.png"; sourceTree = "<group>"; };
-		7F23CECA15B6E13500C99EA5 /* KYICircleMainButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMainButtonBackground.png; sourceTree = "<group>"; };
-		7F23CED215B6E18300C99EA5 /* KYICircleMainButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMainButtonBackground@2x.png"; sourceTree = "<group>"; };
-		7F23CED315B6E18400C99EA5 /* KYICircleMainButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMainButtonNormal.png; sourceTree = "<group>"; };
-		7F23CED415B6E18400C99EA5 /* KYICircleMainButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMainButtonNormal@2x.png"; sourceTree = "<group>"; };
+		7F23CECA15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuMainButtonBackground.png; sourceTree = "<group>"; };
+		7F23CED215B6E18300C99EA5 /* KYICircleMenuMainButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuMainButtonBackground@2x.png"; sourceTree = "<group>"; };
+		7F23CED315B6E18400C99EA5 /* KYICircleMenuMainButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuMainButtonNormal.png; sourceTree = "<group>"; };
+		7F23CED415B6E18400C99EA5 /* KYICircleMenuMainButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuMainButtonNormal@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,10 +167,10 @@
 		7F23CEAD15B6BE7000C99EA5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				7F23CED315B6E18400C99EA5 /* KYICircleMainButtonNormal.png */,
-				7F23CED415B6E18400C99EA5 /* KYICircleMainButtonNormal@2x.png */,
-				7F23CECA15B6E13500C99EA5 /* KYICircleMainButtonBackground.png */,
-				7F23CED215B6E18300C99EA5 /* KYICircleMainButtonBackground@2x.png */,
+				7F23CED315B6E18400C99EA5 /* KYICircleMenuMainButtonNormal.png */,
+				7F23CED415B6E18400C99EA5 /* KYICircleMenuMainButtonNormal@2x.png */,
+				7F23CECA15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png */,
+				7F23CED215B6E18300C99EA5 /* KYICircleMenuMainButtonBackground@2x.png */,
 				7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */,
 				7F23CEAF15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png */,
 				7F23CEB015B6BE7000C99EA5 /* KYICircleMenuButton02.png */,
@@ -258,10 +258,10 @@
 				7F23CEC315B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png in Resources */,
 				7F23CEC415B6BE7000C99EA5 /* KYICircleMenuButton06.png in Resources */,
 				7F23CEC515B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png in Resources */,
-				7F23CECE15B6E13500C99EA5 /* KYICircleMainButtonBackground.png in Resources */,
-				7F23CED515B6E18500C99EA5 /* KYICircleMainButtonBackground@2x.png in Resources */,
-				7F23CED615B6E18500C99EA5 /* KYICircleMainButtonNormal.png in Resources */,
-				7F23CED715B6E18500C99EA5 /* KYICircleMainButtonNormal@2x.png in Resources */,
+				7F23CECE15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png in Resources */,
+				7F23CED515B6E18500C99EA5 /* KYICircleMenuMainButtonBackground@2x.png in Resources */,
+				7F23CED615B6E18500C99EA5 /* KYICircleMenuMainButtonNormal.png in Resources */,
+				7F23CED715B6E18500C99EA5 /* KYICircleMenuMainButtonNormal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
