@@ -94,7 +94,11 @@
   CGFloat viewWidth  = CGRectGetWidth(self.view.frame);
   
   // Center Menu View
-  CGRect centerMenuFrame = CGRectMake((viewWidth - kKYCenterMenuSize) / 2, (viewHeight - kKYCenterMenuSize) / 2, kKYCenterMenuSize, kKYCenterMenuSize);
+  CGRect centerMenuFrame =
+    CGRectMake((viewWidth - kKYCircleMenuSize) / 2,
+               (viewHeight - kKYCircleMenuSize) / 2,
+               kKYCircleMenuSize,
+               kKYCircleMenuSize);
   UIView * centerMenu = [[UIView alloc] initWithFrame:centerMenuFrame];
   [centerMenu setAlpha:0.f];
   self.centerMenu = centerMenu;
@@ -102,10 +106,10 @@
   [self.view addSubview:self.centerMenu];
   
   // Add buttons to |ballMenu_|, set it's origin frame to center
-  buttonOriginFrame_ = CGRectMake((kKYCenterMenuSize - kKYCenterMainButtonSize) / 2,
-                                  (kKYCenterMenuSize - kKYCenterMainButtonSize) / 2,
-                                  kKYCenterMenuButtonSize,
-                                  kKYCenterMenuButtonSize);
+  buttonOriginFrame_ = CGRectMake((kKYCircleMenuSize - kKYCircleMenuMainButtonSize) / 2,
+                                  (kKYCircleMenuSize - kKYCircleMenuMainButtonSize) / 2,
+                                  kKYCircleMenuMainButtonSize,
+                                  kKYCircleMenuMainButtonSize);
   for (int i = 0; i < buttonCount_;) {
     UIButton * button = [[UIButton alloc] initWithFrame:buttonOriginFrame_];
     [button setOpaque:NO];
@@ -115,12 +119,12 @@
     [button release];
   }
   
-  // main button
+  // Main Button
   CGRect mainButtonFrame =
-    CGRectMake((CGRectGetWidth(self.view.frame) - kKYCenterMenuButtonSize) / 2.f,
-               (CGRectGetHeight(self.view.frame) - kKYCenterMenuButtonSize) / 2.f,
-               kKYCenterMenuButtonSize,
-               kKYCenterMenuButtonSize);
+    CGRectMake((CGRectGetWidth(self.view.frame) - kKYCircleMenuMainButtonSize) / 2.f,
+               (CGRectGetHeight(self.view.frame) - kKYCircleMenuMainButtonSize) / 2.f,
+               kKYCircleMenuMainButtonSize,
+               kKYCircleMenuMainButtonSize);
   mainButton_ = [[UIButton alloc] initWithFrame:mainButtonFrame];
   [mainButton_ setBackgroundImage:[UIImage imageNamed:kKYICircleMainButtonBackground]
                          forState:UIControlStateNormal];
@@ -223,8 +227,6 @@
 }
 
 // Recover to normal status
-// Change |centerMainButton_|'s status in main view
-//- (void)changeCenterMainButtonStatusToMove:(CenterMainButtonStatus)centerMainButtonStatus {
 - (void)recoverToNormalStatus {
   [UIView animateWithDuration:.3f
                         delay:0.f
@@ -293,8 +295,8 @@
   //   -----      x: degree
   //     a
   //
-  CGFloat centerBallMenuHalfSize = kKYCenterMenuSize / 2.f;
-  CGFloat buttonRadius           = kKYCenterMenuButtonSize / 2.f;
+  CGFloat centerBallMenuHalfSize = kKYCircleMenuSize / 2.f;
+  CGFloat buttonRadius           = kKYCircleMenuMainButtonSize / 2.f;
   if (! triangleHypotenuse) triangleHypotenuse = 112.f; // Distance to Ball Center
   
   //
@@ -397,7 +399,7 @@
 // Set Frame for button with special tag
 - (void)setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin {
   UIButton * button = (UIButton *)[self.centerMenu viewWithTag:buttonTag];
-  [button setFrame:CGRectMake(origin.x, origin.y, kKYCenterMenuButtonSize, kKYCenterMenuButtonSize)];
+  [button setFrame:CGRectMake(origin.x, origin.y, kKYCircleMenuMainButtonSize, kKYCircleMenuMainButtonSize)];
   button = nil;
 }
 

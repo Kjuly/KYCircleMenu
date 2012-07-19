@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 // View Constants
-#define kKYCenterMainButtonSize 64.0f
-#define kKYCenterMenuSize       305.0f
-#define kKYCenterMenuButtonSize 64.0f
+#define kKYCircleMenuMainButtonSize 64.f
+#define kKYCircleMenuSize           305.f
+#define kKYCircleMenuButtonSize     64.f
 
 // Image Name
 #define kKYICircleMainButtonNormal     @"KYICircleMainButtonNormal.png"
