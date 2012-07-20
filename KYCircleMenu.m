@@ -135,7 +135,6 @@
         forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:mainButton_];
   
-  
   // Add Observer for close self
   // If |centerMainButton_| post cancel notification, do it
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -165,7 +164,14 @@
 #pragma mark - Publich Button Action
 
 // Run action depend on button, it'll be implemented by subclass
-- (void)runButtonActions:(id)sender {}
+- (void)runButtonActions:(id)sender {
+  // Close center menu
+  [self closeCenterMenuView:nil];
+  
+  // Set |mainButton_|'s image to selecetd ones
+  [mainButton_ setImage:[[sender imageView] image]
+               forState:UIControlStateNormal];
+}
 
 // Push View Controller
 - (void)pushViewController:(id)viewController {
