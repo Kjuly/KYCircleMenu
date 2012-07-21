@@ -23,16 +23,18 @@
 
 
 @interface KYCircleMenu : UIViewController {
-  UIView * centerMenu_;
-  BOOL      isOpening_;
-  BOOL isInProcessing_;
-  BOOL      isClosed_;
+  UIButton * mainButton_;
+  UIView   * centerMenu_;
+  BOOL       isOpening_;
+  BOOL       isInProcessing_;
+  BOOL       isClosed_;
 }
 
-@property (nonatomic, retain) UIView * centerMenu;
-@property (nonatomic, assign) BOOL     isOpening;
-@property (nonatomic, assign) BOOL     isInProcessing;
-@property (nonatomic, assign) BOOL     isClosed;
+@property (nonatomic, retain) UIButton * mainButton;
+@property (nonatomic, retain) UIView   * centerMenu;
+@property (nonatomic, assign) BOOL       isOpening;
+@property (nonatomic, assign) BOOL       isInProcessing;
+@property (nonatomic, assign) BOOL       isClosed;
 
 - (id)initWithButtonCount:(NSInteger)buttonCount;
 - (void)runButtonActions:(id)sender;

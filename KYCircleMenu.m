@@ -10,13 +10,9 @@
 
 @interface KYCircleMenu () {
  @private
-  UIButton * mainButton_;
-  
   NSInteger buttonCount_;
   CGRect    buttonOriginFrame_;
 }
-
-@property (nonatomic, retain) UIButton * mainButton;
 
 - (void)_releaseSubviews;
 - (void)_toggleCircleMenu:(id)sender;
