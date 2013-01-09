@@ -62,7 +62,7 @@ static CGFloat menuSize_,         // size of menu
     self.centerButtonBackgroundImageName = nil;
   // Release subvies & remove notification observer
   [self _releaseSubviews];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:kKYNCircleMenuCloseCenterMenu object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:kKYNCircleMenuClose object:nil];
   [super dealloc];
 }
 
@@ -294,7 +294,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   // If |centerMainButton_| post cancel notification, do it
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(_close:)
-                                               name:kKYNCircleMenuCloseCenterMenu
+                                               name:kKYNCircleMenuClose
                                              object:nil];
 }
 

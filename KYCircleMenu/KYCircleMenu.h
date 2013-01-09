@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-#define kKYNCircleMenuCloseCenterMenu @"KYNCircleMenuCloseCenterMenu"
+// The default case it that the navigation bar is only shown in child views.
+// If it is needed to be shown with the circle menu together,
+//   just copy this macro into your own config file & comment it out.
+//
+// #define KY_CIRCLEMENU_WITH_NAVIGATIONBAR 1
+
+
+// Notification to close the menu
+#define kKYNCircleMenuClose @"KYNCircleMenuClose"
+
 
 @interface KYCircleMenu : UIViewController {
   UIView   * menu_;
