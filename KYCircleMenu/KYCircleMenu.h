@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-// The default case it that the navigation bar is only shown in child views.
+// The default case is that the navigation bar is only shown in child views.
 // If it is needed to be shown with the circle menu together,
 //   just copy this macro into your own config file & comment it out.
 //

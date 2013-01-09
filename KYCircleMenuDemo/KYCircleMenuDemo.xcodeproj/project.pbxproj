@@ -154,7 +154,6 @@
 				7F23CE9715B6B11800C99EA5 /* AppDelegate.m */,
 				7F23CEA215B6B22500C99EA5 /* Constants.h */,
 				7F23CEA315B6B22600C99EA5 /* Constants.m */,
-				7F23CEC615B6DE7D00C99EA5 /* Views */,
 				7F23CEA515B6B4D100C99EA5 /* Controllers */,
 				7F23CEAC15B6BE7000C99EA5 /* Resources */,
 				7F23CE8E15B6B11800C99EA5 /* Supporting Files */,
@@ -230,13 +229,6 @@
 				7F23CEB915B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		7F23CEC615B6DE7D00C99EA5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		7FA24181169D33060005A37A /* KYCircleMenu */ = {
