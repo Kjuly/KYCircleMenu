@@ -27,9 +27,13 @@
 - (void)_releaseSubviews;
 - (void)_setupNotificationObserver;
 
-- (void)_toggleCircleMenu:(id)sender;
-- (void)_closeCenterMenuView:(NSNotification *)notification;
-- (void)_computeAndSetButtonLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse;
+// Toggle menu beween open & closed
+- (void)_toggle:(id)sender;
+// Close menu to hide all buttons around
+- (void)_close:(NSNotification *)notification;
+// Update buttons' layout with the value of triangle hypotenuse that given
+- (void)_updateButtonsLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse;
+// Update button's origin value
 - (void)_setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin;
 
 @end
@@ -67,6 +71,7 @@ static CGFloat menuSize_,         // size of menu
   self.menu         = nil;
 }
 
+// Designated initializer
 - (id)      initWithButtonCount:(NSInteger)buttonCount
                        menuSize:(CGFloat)menuSize
                      buttonSize:(CGFloat)buttonSize
@@ -83,14 +88,15 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
     centerButtonImageName_           = centerButtonImageName;
     centerButtonBackgroundImageName_ = centerButtonBackgroundImageName;
     
-    buttonOriginFrame_ = CGRectMake((menuSize_ - centerButtonSize_) / 2,
-                                    (menuSize_ - centerButtonSize_) / 2,
-                                    centerButtonSize_,
-                                    centerButtonSize_);
+    // Buttons' origin frame
+    CGFloat originX = (menuSize_ - centerButtonSize_) / 2;
+    buttonOriginFrame_ =
+      (CGRect){{originX, originX}, {centerButtonSize_, centerButtonSize_}};
   }
   return self;
 }
 
+// Secondary initializer
 - (id)init {
   self = [super init];
   if (self) {
@@ -160,7 +166,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   [centerButton_ setImage:[UIImage imageNamed:self.centerButtonImageName]
                  forState:UIControlStateNormal];
   [centerButton_ addTarget:self
-                    action:@selector(_toggleCircleMenu:)
+                    action:@selector(_toggle:)
           forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:centerButton_];
   
@@ -179,6 +185,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   // If it is from child view by press the buttons,
   //   recover menu to normal state
   if (shouldRecoverToNormalStatusWhenViewWillAppear_)
+//    [self recoverToNormalStatus];
     [self performSelector:@selector(recoverToNormalStatus)
                withObject:nil
                afterDelay:.3f];
@@ -194,7 +201,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 // Run action depend on button, it'll be implemented by subclass
 - (void)runButtonActions:(id)sender {
   // Close center menu
-  [self _closeCenterMenuView:nil];
+//  [self _closeCenterMenuView:nil];
   shouldRecoverToNormalStatusWhenViewWillAppear_ = YES;
 }
 
@@ -205,16 +212,16 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                       options:UIViewAnimationOptionCurveEaseInOut
                    animations:^{
                      // Slide away buttons in center view & hide them
-                     [self _computeAndSetButtonLayoutWithTriangleHypotenuse:300.f];
+                     [self _updateButtonsLayoutWithTriangleHypotenuse:300.f];
                      [self.menu setAlpha:0.f];
                      
-                     // Show Navigation Bar
+                     /*/ Show Navigation Bar
                      [self.navigationController setNavigationBarHidden:NO];
                      CGRect navigationBarFrame = self.navigationController.navigationBar.frame;
                      if (navigationBarFrame.origin.y < 0) {
                        navigationBarFrame.origin.y = 0;
                        [self.navigationController.navigationBar setFrame:navigationBarFrame];
-                     }
+                     }*/
                    }
                    completion:^(BOOL finished) {
                      [self.navigationController pushViewController:viewController animated:YES];
@@ -229,7 +236,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 }*/
 
 // Open center menu view
-- (void)openCenterMenuView {
+- (void)open {
   if (isOpening_)
     return;
   isInProcessing_ = YES;
@@ -240,14 +247,14 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                    animations:^{
                      [self.menu setAlpha:1.f];
                      // Compute buttons' frame and set for them, based on |buttonCount|
-                     [self _computeAndSetButtonLayoutWithTriangleHypotenuse:125.f];
+                     [self _updateButtonsLayoutWithTriangleHypotenuse:125.f];
                    }
                    completion:^(BOOL finished) {
                      [UIView animateWithDuration:.1f
                                            delay:0.f
                                          options:UIViewAnimationCurveEaseInOut
                                       animations:^{
-                                        [self _computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
+                                        [self _updateButtonsLayoutWithTriangleHypotenuse:112.f];
                                       }
                                       completion:^(BOOL finished) {
                                         isOpening_ = YES;
@@ -259,23 +266,23 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 // Recover to normal status
 - (void)recoverToNormalStatus {
+  [self _updateButtonsLayoutWithTriangleHypotenuse:300.f];
   [UIView animateWithDuration:.3f
                         delay:0.f
                       options:UIViewAnimationOptionCurveEaseInOut
                    animations:^{
                      // Show buttons & slide in to center
                      [self.menu setAlpha:1.f];
-                     [self _computeAndSetButtonLayoutWithTriangleHypotenuse:100.f];
+                     [self _updateButtonsLayoutWithTriangleHypotenuse:100.f];
                    }
                    completion:^(BOOL finished) {
                      [UIView animateWithDuration:.1f
                                            delay:0.f
                                          options:UIViewAnimationOptionCurveEaseInOut
                                       animations:^{
-                                        [self _computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
+                                        [self _updateButtonsLayoutWithTriangleHypotenuse:112.f];
                                       }
                                       completion:nil];
-                     isClosed_ = NO;
                    }];
 }
 
@@ -286,18 +293,18 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   // Add Observer for close self
   // If |centerMainButton_| post cancel notification, do it
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_closeCenterMenuView:)
+                                           selector:@selector(_close:)
                                                name:kKYNCircleMenuCloseCenterMenu
                                              object:nil];
 }
 
 // Toggle Circle Menu
-- (void)_toggleCircleMenu:(id)sender {
-  (isClosed_ ? [self openCenterMenuView] : [self _closeCenterMenuView:nil]);
+- (void)_toggle:(id)sender {
+  (isClosed_ ? [self open] : [self _close:nil]);
 }
 
-// Close center menu view
-- (void)_closeCenterMenuView:(NSNotification *)notification {
+// Close menu to hide all buttons around
+- (void)_close:(NSNotification *)notification {
   if (isClosed_)
     return;
   
@@ -318,8 +325,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                    }];
 }
 
-// Compute buttons' layout based on |buttonCount|
-- (void)_computeAndSetButtonLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse {
+// Update buttons' layout with the value of triangle hypotenuse that given
+- (void)_updateButtonsLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse {
   //
   //  Triangle Values for Buttons' Position
   // 

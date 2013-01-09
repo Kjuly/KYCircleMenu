@@ -76,7 +76,7 @@
   // Configure new view & push it with custom |pushViewController:| method
   UIViewController * viewController = [[UIViewController alloc] init];
   [viewController.view setBackgroundColor:[UIColor blackColor]];
-  [viewController setTitle:[NSString stringWithFormat:@"%d", [sender tag]]];
+  [viewController setTitle:[NSString stringWithFormat:@"View %d", [sender tag]]];
   // Use KYCircleMenu's |-pushViewController:| to push vc
   [self pushViewController:viewController];
   [viewController release];

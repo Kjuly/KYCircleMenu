@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-// Notification Name - Prefix: kKYNCircleMenu
 #define kKYNCircleMenuCloseCenterMenu @"KYNCircleMenuCloseCenterMenu"
-//#define kKYCircleMenuNChangeCenterMainButtonStatus @"KYCircleMenuNChangeCenterMainButtonStatus"
 
 @interface KYCircleMenu : UIViewController {
   UIView   * menu_;
@@ -41,10 +39,22 @@
           centerButtonImageName:(NSString *)centerButtonImageName
 centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
 
+// Run action for buttons around.
+// Override this message to do custom jobs,
+//   but with |[super runButtonActions:sender];| at top.
 - (void)runButtonActions:(id)sender;
+
+// Custom push message to manage menu & the child views well.
+// When press a button, dispatch this message to swipe away the menu buttons,
+//   and push the new view controller appropriately
 - (void)pushViewController:(id)viewController;
+
 //- (void)checkDeviceSystemFor:(id)viewController;
-- (void)openCenterMenuView;
+
+// Open menu to show all buttons around
+- (void)open;
+
+// Recover all buttons to normal position
 - (void)recoverToNormalStatus;
 
 @end
