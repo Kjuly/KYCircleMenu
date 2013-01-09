@@ -104,6 +104,9 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
     isOpening_      = NO;
     isClosed_       = YES;
     shouldRecoverToNormalStatusWhenViewWillAppear_ = NO;
+#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
+    [self.navigationController setNavigationBarHidden:YES];
+#endif
   }
   return self;
 }
@@ -119,9 +122,10 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-  UIView * view = [[UIView alloc] init];
-  CGFloat viewHeight = (self.navigationController ? kKYViewHeight - kKYNavigationBarHeight :kKYViewHeight);
-  [view setFrame:(CGRect){CGPointZero, {kKYViewWidth, viewHeight}}];
+  CGFloat viewHeight =
+    (self.navigationController.isNavigationBarHidden ? kKYViewHeight : kKYViewHeight - kKYNavigationBarHeight);
+  CGRect frame = CGRectMake(0.f, 0.f, kKYViewWidth, viewHeight);
+  UIView * view = [[UIView alloc] initWithFrame:frame];
   self.view = view;
   [view release];
 }
@@ -182,10 +186,13 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
+#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
+  [self.navigationController setNavigationBarHidden:YES animated:YES];
+#endif
+  
   // If it is from child view by press the buttons,
   //   recover menu to normal state
   if (shouldRecoverToNormalStatusWhenViewWillAppear_)
-//    [self recoverToNormalStatus];
     [self performSelector:@selector(recoverToNormalStatus)
                withObject:nil
                afterDelay:.3f];
@@ -200,6 +207,9 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 // Run action depend on button, it'll be implemented by subclass
 - (void)runButtonActions:(id)sender {
+#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
+  [self.navigationController setNavigationBarHidden:NO animated:YES];
+#endif
   // Close center menu
 //  [self _closeCenterMenuView:nil];
   shouldRecoverToNormalStatusWhenViewWillAppear_ = YES;

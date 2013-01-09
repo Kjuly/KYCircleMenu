@@ -8,13 +8,6 @@
 
 #import "CircleMenuViewController.h"
 
-@interface CircleMenuViewController () {
- @private
-  NSTimeInterval delayTimeForRecoveringToNormalStatus_;
-}
-
-@end
-
 @implementation CircleMenuViewController
 
 - (void)dealloc {
@@ -32,26 +25,9 @@
 {
   [super viewDidLoad];
   
-  // set delay time for recovering to normal status
-  delayTimeForRecoveringToNormalStatus_ = (self.navigationController ? .3f : 0.f);
-  
-  // Modify Buttons' style in center menu view
+  // Modify buttons' style in circle menu
   for (UIButton * button in [self.menu subviews])
     [button setAlpha:.95f];
-}
-
-- (void)viewDidUnload {
-  [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  
-  if (! self.isClosed)
-    // recover circle menu to normal status
-    [self performSelector:@selector(recoverToNormalStatus)
-               withObject:nil
-               afterDelay:delayTimeForRecoveringToNormalStatus_];
 }
 
 - (void)didReceiveMemoryWarning
