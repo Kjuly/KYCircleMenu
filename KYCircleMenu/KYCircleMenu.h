@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-// Notification Name - Prefix: kKYN
-#define kKYNCloseCenterMenu              @"KYNCloseCenterMenu"
-#define kKYNChangeCenterMainButtonStatus @"KYNChangeCenterMainButtonStatus"
+// Notification Name - Prefix: kKYNCircleMenu
+#define kKYNCircleMenuCloseCenterMenu @"KYNCircleMenuCloseCenterMenu"
+//#define kKYCircleMenuNChangeCenterMainButtonStatus @"KYCircleMenuNChangeCenterMainButtonStatus"
 
 // Image Name - Prefix: kKYI
 #define kKYICircleMenuMainButtonNormal     @"KYICircleMenuMainButtonNormal.png"

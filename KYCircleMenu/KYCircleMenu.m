@@ -16,9 +16,9 @@
 
 - (void)_releaseSubviews;
 - (void)_toggleCircleMenu:(id)sender;
-- (void)closeCenterMenuView:(NSNotification *)notification;
-- (void)computeAndSetButtonLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse;
-- (void)setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin;
+- (void)_closeCenterMenuView:(NSNotification *)notification;
+- (void)_computeAndSetButtonLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse;
+- (void)_setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin;
 
 @end
 
@@ -35,7 +35,7 @@
 -(void)dealloc {
   // Release subvies & remove notification observer
   [self _releaseSubviews];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:kKYNCloseCenterMenu object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:kKYNCircleMenuCloseCenterMenu object:nil];
   [super dealloc];
 }
 
@@ -134,8 +134,8 @@
   // Add Observer for close self
   // If |centerMainButton_| post cancel notification, do it
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(closeCenterMenuView:)
-                                               name:kKYNCloseCenterMenu
+                                           selector:@selector(_closeCenterMenuView:)
+                                               name:kKYNCircleMenuCloseCenterMenu
                                              object:nil];
 }
 
@@ -162,7 +162,7 @@
 // Run action depend on button, it'll be implemented by subclass
 - (void)runButtonActions:(id)sender {
   // Close center menu
-  [self closeCenterMenuView:nil];
+  [self _closeCenterMenuView:nil];
   
   // Set |mainButton_|'s image to selecetd ones
   [mainButton_ setImage:[[sender imageView] image]
@@ -176,7 +176,7 @@
                       options:UIViewAnimationOptionCurveEaseInOut
                    animations:^{
                      // Slide away buttons in center view & hide them
-                     [self computeAndSetButtonLayoutWithTriangleHypotenuse:300.f];
+                     [self _computeAndSetButtonLayoutWithTriangleHypotenuse:300.f];
                      [self.centerMenu setAlpha:0.f];
                      
                      // Show Navigation Bar
@@ -211,14 +211,14 @@
                    animations:^{
                      [self.centerMenu setAlpha:1.f];
                      // Compute buttons' frame and set for them, based on |buttonCount|
-                     [self computeAndSetButtonLayoutWithTriangleHypotenuse:125.f];
+                     [self _computeAndSetButtonLayoutWithTriangleHypotenuse:125.f];
                    }
                    completion:^(BOOL finished) {
                      [UIView animateWithDuration:.1f
                                            delay:0.f
                                          options:UIViewAnimationCurveEaseInOut
                                       animations:^{
-                                        [self computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
+                                        [self _computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
                                       }
                                       completion:^(BOOL finished) {
                                         isOpening_ = YES;
@@ -236,14 +236,14 @@
                    animations:^{
                      // Show buttons & slide in to center
                      [self.centerMenu setAlpha:1.f];
-                     [self computeAndSetButtonLayoutWithTriangleHypotenuse:100.f];
+                     [self _computeAndSetButtonLayoutWithTriangleHypotenuse:100.f];
                    }
                    completion:^(BOOL finished) {
                      [UIView animateWithDuration:.1f
                                            delay:0.f
                                          options:UIViewAnimationOptionCurveEaseInOut
                                       animations:^{
-                                        [self computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
+                                        [self _computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
                                       }
                                       completion:nil];
                    }];
@@ -254,11 +254,11 @@
 // Toggle Circle Menu
 - (void)_toggleCircleMenu:(id)sender {
   if (isClosed_) [self openCenterMenuView];
-  else           [self closeCenterMenuView:nil];
+  else           [self _closeCenterMenuView:nil];
 }
 
 // Close center menu view
-- (void)closeCenterMenuView:(NSNotification *)notification {
+- (void)_closeCenterMenuView:(NSNotification *)notification {
   if (isClosed_)
     return;
   isInProcessing_ = YES;
@@ -287,7 +287,7 @@
 }
 
 // Compute buttons' layout based on |buttonCount|
-- (void)computeAndSetButtonLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse {
+- (void)_computeAndSetButtonLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse {
   //
   //  Triangle Values for Buttons' Position
   // 
@@ -310,7 +310,7 @@
   //
   switch (buttonCount_) {
     case 1:
-      [self setButtonWithTag:1 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
+      [self _setButtonWithTag:1 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
                                                   centerBallMenuHalfSize - triangleHypotenuse - buttonRadius)];
       break;
       
@@ -319,8 +319,8 @@
       CGFloat triangleB = triangleHypotenuse * sinf(degree);
       CGFloat negativeValue = centerBallMenuHalfSize - triangleB - buttonRadius;
       CGFloat positiveValue = centerBallMenuHalfSize + triangleB - buttonRadius;
-      [self setButtonWithTag:1 origin:CGPointMake(negativeValue, negativeValue)];
-      [self setButtonWithTag:2 origin:CGPointMake(positiveValue, negativeValue)];
+      [self _setButtonWithTag:1 origin:CGPointMake(negativeValue, negativeValue)];
+      [self _setButtonWithTag:2 origin:CGPointMake(positiveValue, negativeValue)];
       break;
     }
       
@@ -332,11 +332,11 @@
       CGFloat degree    = M_PI / 3.0f; // = 60 * M_PI / 180
       CGFloat triangleA = triangleHypotenuse * cosf(degree);
       CGFloat triangleB = triangleHypotenuse * sinf(degree);
-      [self setButtonWithTag:1 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
+      [self _setButtonWithTag:1 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
                                                   centerBallMenuHalfSize - triangleA - buttonRadius)];
-      [self setButtonWithTag:2 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
+      [self _setButtonWithTag:2 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
                                                   centerBallMenuHalfSize - triangleA - buttonRadius)];
-      [self setButtonWithTag:3 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
+      [self _setButtonWithTag:3 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
                                                   centerBallMenuHalfSize + triangleHypotenuse - buttonRadius)];
       break;
     }
@@ -346,10 +346,10 @@
       CGFloat triangleB = triangleHypotenuse * sinf(degree);
       CGFloat negativeValue = centerBallMenuHalfSize - triangleB - buttonRadius;
       CGFloat positiveValue = centerBallMenuHalfSize + triangleB - buttonRadius;
-      [self setButtonWithTag:1 origin:CGPointMake(negativeValue, negativeValue)];
-      [self setButtonWithTag:2 origin:CGPointMake(positiveValue, negativeValue)];
-      [self setButtonWithTag:3 origin:CGPointMake(negativeValue, positiveValue)];
-      [self setButtonWithTag:4 origin:CGPointMake(positiveValue, positiveValue)];
+      [self _setButtonWithTag:1 origin:CGPointMake(negativeValue, negativeValue)];
+      [self _setButtonWithTag:2 origin:CGPointMake(positiveValue, negativeValue)];
+      [self _setButtonWithTag:3 origin:CGPointMake(negativeValue, positiveValue)];
+      [self _setButtonWithTag:4 origin:CGPointMake(positiveValue, positiveValue)];
       break;
     }
       
@@ -357,19 +357,19 @@
       CGFloat degree    = M_PI / 2.5f; // = 72 * M_PI / 180
       CGFloat triangleA = triangleHypotenuse * cosf(degree);
       CGFloat triangleB = triangleHypotenuse * sinf(degree);
-      [self setButtonWithTag:1 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
+      [self _setButtonWithTag:1 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
                                                   centerBallMenuHalfSize - triangleA - buttonRadius)];
-      [self setButtonWithTag:2 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
+      [self _setButtonWithTag:2 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
                                                   centerBallMenuHalfSize - triangleHypotenuse - buttonRadius)];
-      [self setButtonWithTag:3 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
+      [self _setButtonWithTag:3 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
                                                   centerBallMenuHalfSize - triangleA - buttonRadius)];
       
       degree    = M_PI / 5.0f;  // = 36 * M_PI / 180
       triangleA = triangleHypotenuse * cosf(degree);
       triangleB = triangleHypotenuse * sinf(degree);
-      [self setButtonWithTag:4 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
+      [self _setButtonWithTag:4 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
                                                   centerBallMenuHalfSize + triangleA - buttonRadius)];
-      [self setButtonWithTag:5 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
+      [self _setButtonWithTag:5 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
                                                   centerBallMenuHalfSize + triangleA - buttonRadius)];
       break;
     }
@@ -378,17 +378,17 @@
       CGFloat degree    = M_PI / 3.0f; // = 60 * M_PI / 180
       CGFloat triangleA = triangleHypotenuse * cosf(degree);
       CGFloat triangleB = triangleHypotenuse * sinf(degree);
-      [self setButtonWithTag:1 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
+      [self _setButtonWithTag:1 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
                                                   centerBallMenuHalfSize - triangleA - buttonRadius)];
-      [self setButtonWithTag:2 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
+      [self _setButtonWithTag:2 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
                                                   centerBallMenuHalfSize - triangleHypotenuse - buttonRadius)];
-      [self setButtonWithTag:3 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
+      [self _setButtonWithTag:3 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
                                                   centerBallMenuHalfSize - triangleA - buttonRadius)];
-      [self setButtonWithTag:4 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
+      [self _setButtonWithTag:4 origin:CGPointMake(centerBallMenuHalfSize - triangleB - buttonRadius,
                                                   centerBallMenuHalfSize + triangleA - buttonRadius)];
-      [self setButtonWithTag:5 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
+      [self _setButtonWithTag:5 origin:CGPointMake(centerBallMenuHalfSize - buttonRadius,
                                                   centerBallMenuHalfSize + triangleHypotenuse - buttonRadius)];
-      [self setButtonWithTag:6 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
+      [self _setButtonWithTag:6 origin:CGPointMake(centerBallMenuHalfSize + triangleB - buttonRadius,
                                                   centerBallMenuHalfSize + triangleA - buttonRadius)];
       break;
     }
@@ -399,7 +399,7 @@
 }
 
 // Set Frame for button with special tag
-- (void)setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin {
+- (void)_setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin {
   UIButton * button = (UIButton *)[self.centerMenu viewWithTag:buttonTag];
   [button setFrame:CGRectMake(origin.x, origin.y, kKYCircleMenuMainButtonSize, kKYCircleMenuMainButtonSize)];
   button = nil;
