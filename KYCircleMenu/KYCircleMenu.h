@@ -58,8 +58,6 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
 //   and push the new view controller appropriately
 - (void)pushViewController:(id)viewController;
 
-//- (void)checkDeviceSystemFor:(id)viewController;
-
 // Open menu to show all buttons around
 - (void)open;
 

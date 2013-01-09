@@ -238,13 +238,6 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                    }];
 }
 
-/*/ Check device's system, it it's lower than iOS5.0, methods like |viewWillAppear:| will not be called
-// So, manually send them
-- (void)checkDeviceSystemFor:(id)viewController {
-  if (SYSTEM_VERSION_LESS_THAN(@"5.0"))
-    [viewController viewWillAppear:YES];
-}*/
-
 // Open center menu view
 - (void)open {
   if (isOpening_)
