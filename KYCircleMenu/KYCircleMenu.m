@@ -15,6 +15,8 @@
 }
 
 - (void)_releaseSubviews;
+- (void)_setupNotificationObserver;
+
 - (void)_toggleCircleMenu:(id)sender;
 - (void)_closeCenterMenuView:(NSNotification *)notification;
 - (void)_computeAndSetButtonLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse;
@@ -31,12 +33,11 @@ static CGFloat menuSize_,         // size of menu
 
 @implementation KYCircleMenu
 
-@synthesize centerMenu     = centerMenu_;
-@synthesize isOpening      = isOpening_;
-@synthesize isInProcessing = isInProcessing_;
-@synthesize isClosed       = isClosed_;
-
-@synthesize mainButton = mainButton_;
+@synthesize menu           = menu_,
+            centerButton   = centerButton_;
+@synthesize isOpening      = isOpening_,
+            isInProcessing = isInProcessing_,
+            isClosed       = isClosed_;
 
 -(void)dealloc {
   // Release subvies & remove notification observer
@@ -46,8 +47,8 @@ static CGFloat menuSize_,         // size of menu
 }
 
 - (void)_releaseSubviews {
-  self.centerMenu = nil;
-  self.mainButton = nil;
+  self.centerButton = nil;
+  self.menu         = nil;
 }
 
 - (id)initWithButtonCount:(NSInteger)buttonCount
@@ -95,17 +96,16 @@ static CGFloat menuSize_,         // size of menu
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  // Constants
   CGFloat viewHeight = CGRectGetHeight(self.view.frame);
   CGFloat viewWidth  = CGRectGetWidth(self.view.frame);
   
   // Center Menu View
   CGRect centerMenuFrame =
     CGRectMake((viewWidth - menuSize_) / 2, (viewHeight - menuSize_) / 2, menuSize_, menuSize_);
-  UIView * centerMenu = [[UIView alloc] initWithFrame:centerMenuFrame];
-  [centerMenu setAlpha:0.f];
-  self.centerMenu = centerMenu;
-  [centerMenu release];
-  [self.view addSubview:self.centerMenu];
+  menu_ = [[UIView alloc] initWithFrame:centerMenuFrame];
+  [menu_ setAlpha:0.f];
+  [self.view addSubview:menu_];
   
   // Add buttons to |ballMenu_|, set it's origin frame to center
   buttonOriginFrame_ = CGRectMake((menuSize_ - centerButtonSize_) / 2,
@@ -117,7 +117,7 @@ static CGFloat menuSize_,         // size of menu
     [button setOpaque:NO];
     [button setTag:i];
     [button addTarget:self action:@selector(runButtonActions:) forControlEvents:UIControlEventTouchUpInside];
-    [self.centerMenu addSubview:button];
+    [self.menu addSubview:button];
     [button release];
   }
   
@@ -126,22 +126,18 @@ static CGFloat menuSize_,         // size of menu
     CGRectMake((CGRectGetWidth(self.view.frame) - centerButtonSize_) / 2.f,
                (CGRectGetHeight(self.view.frame) - centerButtonSize_) / 2.f,
                centerButtonSize_, centerButtonSize_);
-  mainButton_ = [[UIButton alloc] initWithFrame:mainButtonFrame];
-  [mainButton_ setBackgroundImage:[UIImage imageNamed:kKYICircleMenuMainButtonBackground]
+  centerButton_ = [[UIButton alloc] initWithFrame:mainButtonFrame];
+  [centerButton_ setBackgroundImage:[UIImage imageNamed:kKYICircleMenuMainButtonBackground]
                          forState:UIControlStateNormal];
-  [mainButton_ setImage:[UIImage imageNamed:kKYICircleMenuMainButtonNormal]
+  [centerButton_ setImage:[UIImage imageNamed:kKYICircleMenuMainButtonNormal]
                forState:UIControlStateNormal];
-  [mainButton_ addTarget:self
+  [centerButton_ addTarget:self
                   action:@selector(_toggleCircleMenu:)
         forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:mainButton_];
+  [self.view addSubview:centerButton_];
   
-  // Add Observer for close self
-  // If |centerMainButton_| post cancel notification, do it
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(_closeCenterMenuView:)
-                                               name:kKYNCircleMenuCloseCenterMenu
-                                             object:nil];
+  // Setup notification observer
+  [self _setupNotificationObserver];
 }
 
 - (void)viewDidUnload {
@@ -162,8 +158,8 @@ static CGFloat menuSize_,         // size of menu
   [self _closeCenterMenuView:nil];
   
   // Set |mainButton_|'s image to selecetd ones
-  [mainButton_ setImage:[[sender imageView] image]
-               forState:UIControlStateNormal];
+  [centerButton_ setImage:[[sender imageView] image]
+                 forState:UIControlStateNormal];
 }
 
 // Push View Controller
@@ -174,7 +170,7 @@ static CGFloat menuSize_,         // size of menu
                    animations:^{
                      // Slide away buttons in center view & hide them
                      [self _computeAndSetButtonLayoutWithTriangleHypotenuse:300.f];
-                     [self.centerMenu setAlpha:0.f];
+                     [self.menu setAlpha:0.f];
                      
                      // Show Navigation Bar
                      [self.navigationController setNavigationBarHidden:NO];
@@ -206,7 +202,7 @@ static CGFloat menuSize_,         // size of menu
                         delay:0.f
                       options:UIViewAnimationCurveEaseInOut
                    animations:^{
-                     [self.centerMenu setAlpha:1.f];
+                     [self.menu setAlpha:1.f];
                      // Compute buttons' frame and set for them, based on |buttonCount|
                      [self _computeAndSetButtonLayoutWithTriangleHypotenuse:125.f];
                    }
@@ -232,7 +228,7 @@ static CGFloat menuSize_,         // size of menu
                       options:UIViewAnimationOptionCurveEaseInOut
                    animations:^{
                      // Show buttons & slide in to center
-                     [self.centerMenu setAlpha:1.f];
+                     [self.menu setAlpha:1.f];
                      [self _computeAndSetButtonLayoutWithTriangleHypotenuse:100.f];
                    }
                    completion:^(BOOL finished) {
@@ -247,6 +243,16 @@ static CGFloat menuSize_,         // size of menu
 }
 
 #pragma mark - Private Methods
+
+// Setup notification observer
+- (void)_setupNotificationObserver {
+  // Add Observer for close self
+  // If |centerMainButton_| post cancel notification, do it
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_closeCenterMenuView:)
+                                               name:kKYNCircleMenuCloseCenterMenu
+                                             object:nil];
+}
 
 // Toggle Circle Menu
 - (void)_toggleCircleMenu:(id)sender {
@@ -264,9 +270,9 @@ static CGFloat menuSize_,         // size of menu
                         delay:0.f
                       options:UIViewAnimationCurveEaseIn
                    animations:^{
-                     for (UIButton * button in [self.centerMenu subviews])
+                     for (UIButton * button in [self.menu subviews])
                        [button setFrame:buttonOriginFrame_];
-                     [self.centerMenu setAlpha:0.f];
+                     [self.menu setAlpha:0.f];
                    }
                    completion:^(BOOL finished) {
                      /*
@@ -397,7 +403,7 @@ static CGFloat menuSize_,         // size of menu
 
 // Set Frame for button with special tag
 - (void)_setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin {
-  UIButton * button = (UIButton *)[self.centerMenu viewWithTag:buttonTag];
+  UIButton * button = (UIButton *)[self.menu viewWithTag:buttonTag];
   [button setFrame:CGRectMake(origin.x, origin.y, centerButtonSize_, centerButtonSize_)];
   button = nil;
 }

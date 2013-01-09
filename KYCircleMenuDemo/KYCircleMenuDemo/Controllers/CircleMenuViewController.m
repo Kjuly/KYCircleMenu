@@ -37,7 +37,7 @@
   delayTimeForRecoveringToNormalStatus_ = (self.navigationController == nil ? 0.f : .3f);
   
   // Set Buttons' style in center menu view
-  for (UIButton * button in [self.centerMenu subviews]) {
+  for (UIButton * button in [self.menu subviews]) {
     [button setImage:[UIImage imageNamed:[NSString stringWithFormat:kKYICircleMenuButton, button.tag]]
             forState:UIControlStateNormal];
     [button setAlpha:.95f];
