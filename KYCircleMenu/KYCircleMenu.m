@@ -16,6 +16,8 @@
   NSString * buttonImageNameFormat_;
   NSString * centerButtonImageName_;
   NSString * centerButtonBackgroundImageName_;
+  
+  BOOL shouldRecoverToNormalStatusWhenViewWillAppear_;
 }
 
 @property (nonatomic, copy) NSString * buttonImageNameFormat,
@@ -80,6 +82,11 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
     centerButtonSize_                = centerButtonSize;
     centerButtonImageName_           = centerButtonImageName;
     centerButtonBackgroundImageName_ = centerButtonBackgroundImageName;
+    
+    buttonOriginFrame_ = CGRectMake((menuSize_ - centerButtonSize_) / 2,
+                                    (menuSize_ - centerButtonSize_) / 2,
+                                    centerButtonSize_,
+                                    centerButtonSize_);
   }
   return self;
 }
@@ -90,6 +97,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
     isInProcessing_ = NO;
     isOpening_      = NO;
     isClosed_       = YES;
+    shouldRecoverToNormalStatusWhenViewWillAppear_ = NO;
   }
   return self;
 }
@@ -128,10 +136,6 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   [self.view addSubview:menu_];
   
   // Add buttons to |ballMenu_|, set it's origin frame to center
-  buttonOriginFrame_ = CGRectMake((menuSize_ - centerButtonSize_) / 2,
-                                  (menuSize_ - centerButtonSize_) / 2,
-                                  centerButtonSize_,
-                                  centerButtonSize_);
   NSString * imageName = nil;
   for (int i = 1; i <= buttonCount_; ++i) {
     UIButton * button = [[UIButton alloc] initWithFrame:buttonOriginFrame_];
@@ -169,6 +173,17 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   [self _releaseSubviews];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  // If it is from child view by press the buttons,
+  //   recover menu to normal state
+  if (shouldRecoverToNormalStatusWhenViewWillAppear_)
+    [self performSelector:@selector(recoverToNormalStatus)
+               withObject:nil
+               afterDelay:.3f];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
   return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -180,10 +195,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 - (void)runButtonActions:(id)sender {
   // Close center menu
   [self _closeCenterMenuView:nil];
-  
-  // Set |mainButton_|'s image to selecetd ones
-  [centerButton_ setImage:[[sender imageView] image]
-                 forState:UIControlStateNormal];
+  shouldRecoverToNormalStatusWhenViewWillAppear_ = YES;
 }
 
 // Push View Controller
@@ -263,6 +275,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                                         [self _computeAndSetButtonLayoutWithTriangleHypotenuse:112.f];
                                       }
                                       completion:nil];
+                     isClosed_ = NO;
                    }];
 }
 
@@ -280,14 +293,14 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 // Toggle Circle Menu
 - (void)_toggleCircleMenu:(id)sender {
-  if (isClosed_) [self openCenterMenuView];
-  else           [self _closeCenterMenuView:nil];
+  (isClosed_ ? [self openCenterMenuView] : [self _closeCenterMenuView:nil]);
 }
 
 // Close center menu view
 - (void)_closeCenterMenuView:(NSNotification *)notification {
   if (isClosed_)
     return;
+  
   isInProcessing_ = YES;
   // Hide buttons with animation
   [UIView animateWithDuration:.3f
@@ -299,14 +312,6 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                      [self.menu setAlpha:0.f];
                    }
                    completion:^(BOOL finished) {
-                     /*
-                     if (self.navigationController)
-                       [self.navigationController.view removeFromSuperview];
-//                       [self.navigationController removeFromParentViewController];
-                     else
-                       [self.view removeFromSuperview];
-//                       [self removeFromParentViewController];
-                      */
                      isClosed_       = YES;
                      isOpening_      = NO;
                      isInProcessing_ = NO;
