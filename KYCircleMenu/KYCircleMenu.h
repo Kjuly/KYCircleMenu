@@ -14,6 +14,10 @@
 //
 // #define KY_CIRCLEMENU_WITH_NAVIGATIONBAR 1
 
+// Constants
+#define kKYCircleMenuViewHeight CGRectGetHeight([UIScreen mainScreen].applicationFrame)
+#define kKYCircleMenuViewWidth  CGRectGetWidth([UIScreen mainScreen].applicationFrame)
+#define kKYCircleMenuNavigationBarHeight 44.f
 
 // Notification to close the menu
 #define kKYNCircleMenuClose @"KYNCircleMenuClose"

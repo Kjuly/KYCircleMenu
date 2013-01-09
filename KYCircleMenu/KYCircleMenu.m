@@ -123,8 +123,9 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
   CGFloat viewHeight =
-    (self.navigationController.isNavigationBarHidden ? kKYViewHeight : kKYViewHeight - kKYNavigationBarHeight);
-  CGRect frame = CGRectMake(0.f, 0.f, kKYViewWidth, viewHeight);
+    (self.navigationController.isNavigationBarHidden
+      ? kKYCircleMenuViewHeight : kKYCircleMenuViewHeight - kKYCircleMenuNavigationBarHeight);
+  CGRect frame = CGRectMake(0.f, 0.f, kKYCircleMenuViewWidth, viewHeight);
   UIView * view = [[UIView alloc] initWithFrame:frame];
   self.view = view;
   [view release];
