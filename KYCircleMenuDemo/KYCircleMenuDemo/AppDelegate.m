@@ -34,7 +34,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [circleMenuViewController initWithButtonCount:kKYCCircleMenuButtonsCount
                                        menuSize:kKYCircleMenuSize
                                      buttonSize:kKYCircleMenuButtonSize
-                               centerButtonSize:kKYCircleMenuMainButtonSize];
+                          buttonImageNameFormat:kKYICircleMenuButtonImageNameFormat
+                               centerButtonSize:kKYCircleMenuCenterButtonSize
+                          centerButtonImageName:kKYICircleMenuCenterButton
+                centerButtonBackgroundImageName:kKYICircleMenuCenterButtonBackground];
   [circleMenuViewController release];
   
   // Set navigation controller as the root vc

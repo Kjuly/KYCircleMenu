@@ -12,11 +12,6 @@
 #define kKYNCircleMenuCloseCenterMenu @"KYNCircleMenuCloseCenterMenu"
 //#define kKYCircleMenuNChangeCenterMainButtonStatus @"KYCircleMenuNChangeCenterMainButtonStatus"
 
-// Image Name - Prefix: kKYI
-#define kKYICircleMenuMainButtonNormal     @"KYICircleMenuMainButtonNormal.png"
-#define kKYICircleMenuMainButtonBackground @"KYICircleMenuMainButtonBackground.png"
-
-
 @interface KYCircleMenu : UIViewController {
   UIView   * menu_;
   UIButton * centerButton_;
@@ -31,10 +26,20 @@
 @property (nonatomic, assign) BOOL       isInProcessing;
 @property (nonatomic, assign) BOOL       isClosed;
 
-- (id)initWithButtonCount:(NSInteger)buttonCount     // count of buttons around
-                 menuSize:(CGFloat)menuSize          // size of menu
-               buttonSize:(CGFloat)buttonSize        // size of buttons around
-         centerButtonSize:(CGFloat)centerButtonSize; // size of center button
+// |buttonCount| : count of buttons around (1<= x <=6)
+// |menuSize| : size of menu
+// |buttonSize| : size of buttons around
+// |buttonImageNameFormat| : name format for button image
+// |centerButtonSize| : size of center button
+// |centerButtonImageName| : name for center button image
+// |centerButtonBackgroundImageName| : name for center button background image
+- (id)      initWithButtonCount:(NSInteger)buttonCount
+                       menuSize:(CGFloat)menuSize
+                     buttonSize:(CGFloat)buttonSize
+          buttonImageNameFormat:(NSString *)buttonImageNameFormat
+               centerButtonSize:(CGFloat)centerButtonSize
+          centerButtonImageName:(NSString *)centerButtonImageName
+centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
 
 - (void)runButtonActions:(id)sender;
 - (void)pushViewController:(id)viewController;

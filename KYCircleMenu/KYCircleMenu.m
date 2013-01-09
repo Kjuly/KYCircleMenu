@@ -12,7 +12,15 @@
  @private
   NSInteger buttonCount_;
   CGRect    buttonOriginFrame_;
+  
+  NSString * buttonImageNameFormat_;
+  NSString * centerButtonImageName_;
+  NSString * centerButtonBackgroundImageName_;
 }
+
+@property (nonatomic, copy) NSString * buttonImageNameFormat,
+                                     * centerButtonImageName,
+                                     * centerButtonBackgroundImageName;
 
 - (void)_releaseSubviews;
 - (void)_setupNotificationObserver;
@@ -38,8 +46,14 @@ static CGFloat menuSize_,         // size of menu
 @synthesize isOpening      = isOpening_,
             isInProcessing = isInProcessing_,
             isClosed       = isClosed_;
+@synthesize buttonImageNameFormat = buttonImageNameFormat_,
+            centerButtonImageName = centerButtonImageName_,
+  centerButtonBackgroundImageName = centerButtonBackgroundImageName_;
 
 -(void)dealloc {
+  self.buttonImageNameFormat =
+    self.centerButtonImageName =
+    self.centerButtonBackgroundImageName = nil;
   // Release subvies & remove notification observer
   [self _releaseSubviews];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:kKYNCircleMenuCloseCenterMenu object:nil];
@@ -51,15 +65,21 @@ static CGFloat menuSize_,         // size of menu
   self.menu         = nil;
 }
 
-- (id)initWithButtonCount:(NSInteger)buttonCount
-                 menuSize:(CGFloat)menuSize
-               buttonSize:(CGFloat)buttonSize
-         centerButtonSize:(CGFloat)centerButtonSize {
+- (id)      initWithButtonCount:(NSInteger)buttonCount
+                       menuSize:(CGFloat)menuSize
+                     buttonSize:(CGFloat)buttonSize
+          buttonImageNameFormat:(NSString *)buttonImageNameFormat
+               centerButtonSize:(CGFloat)centerButtonSize
+          centerButtonImageName:(NSString *)centerButtonImageName
+centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   if (self = [self init]) {
-    buttonCount_      = buttonCount; // Min: 1, Max: 6
-    menuSize_         = menuSize;
-    buttonSize_       = buttonSize;
-    centerButtonSize_ = centerButtonSize;
+    buttonCount_                     = buttonCount;
+    menuSize_                        = menuSize;
+    buttonSize_                      = buttonSize;
+    buttonImageNameFormat_           = buttonImageNameFormat;
+    centerButtonSize_                = centerButtonSize;
+    centerButtonImageName_           = centerButtonImageName;
+    centerButtonBackgroundImageName_ = centerButtonBackgroundImageName;
   }
   return self;
 }
@@ -112,10 +132,14 @@ static CGFloat menuSize_,         // size of menu
                                   (menuSize_ - centerButtonSize_) / 2,
                                   centerButtonSize_,
                                   centerButtonSize_);
+  NSString * imageName = nil;
   for (int i = 1; i <= buttonCount_; ++i) {
     UIButton * button = [[UIButton alloc] initWithFrame:buttonOriginFrame_];
     [button setOpaque:NO];
     [button setTag:i];
+    imageName = [NSString stringWithFormat:self.buttonImageNameFormat, button.tag];
+    [button setImage:[UIImage imageNamed:imageName]
+            forState:UIControlStateNormal];
     [button addTarget:self action:@selector(runButtonActions:) forControlEvents:UIControlEventTouchUpInside];
     [self.menu addSubview:button];
     [button release];
@@ -127,13 +151,13 @@ static CGFloat menuSize_,         // size of menu
                (CGRectGetHeight(self.view.frame) - centerButtonSize_) / 2.f,
                centerButtonSize_, centerButtonSize_);
   centerButton_ = [[UIButton alloc] initWithFrame:mainButtonFrame];
-  [centerButton_ setBackgroundImage:[UIImage imageNamed:kKYICircleMenuMainButtonBackground]
-                         forState:UIControlStateNormal];
-  [centerButton_ setImage:[UIImage imageNamed:kKYICircleMenuMainButtonNormal]
-               forState:UIControlStateNormal];
+  [centerButton_ setBackgroundImage:[UIImage imageNamed:self.centerButtonBackgroundImageName]
+                           forState:UIControlStateNormal];
+  [centerButton_ setImage:[UIImage imageNamed:self.centerButtonImageName]
+                 forState:UIControlStateNormal];
   [centerButton_ addTarget:self
-                  action:@selector(_toggleCircleMenu:)
-        forControlEvents:UIControlEventTouchUpInside];
+                    action:@selector(_toggleCircleMenu:)
+          forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:centerButton_];
   
   // Setup notification observer

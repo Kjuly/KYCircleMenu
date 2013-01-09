@@ -8,8 +8,6 @@
 
 #import "KYCircleMenu.h"
 
-#define kKYICircleMenuButton @"KYICircleMenuButton%.2d.png" // %.2d: 1 - 6
-
 @interface CircleMenuViewController : KYCircleMenu
 
 @end

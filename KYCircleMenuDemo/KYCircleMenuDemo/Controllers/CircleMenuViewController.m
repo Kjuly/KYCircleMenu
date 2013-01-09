@@ -17,11 +17,13 @@
 
 @implementation CircleMenuViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    // Custom initialization
+- (void)dealloc {
+  [super dealloc];
+}
+
+- (id)init {
+  if (self = [super init]) {
+    [self setTitle:@"KYCircleMenu"];
   }
   return self;
 }
@@ -30,18 +32,12 @@
 {
   [super viewDidLoad];
   
-  // Set root menu's title
-  [self setTitle:@"KYCircleMenu"];
-  
   // set delay time for recovering to normal status
-  delayTimeForRecoveringToNormalStatus_ = (self.navigationController == nil ? 0.f : .3f);
+  delayTimeForRecoveringToNormalStatus_ = (self.navigationController ? .3f : 0.f);
   
-  // Set Buttons' style in center menu view
-  for (UIButton * button in [self.menu subviews]) {
-    [button setImage:[UIImage imageNamed:[NSString stringWithFormat:kKYICircleMenuButton, button.tag]]
-            forState:UIControlStateNormal];
+  // Modify Buttons' style in center menu view
+  for (UIButton * button in [self.menu subviews])
     [button setAlpha:.95f];
-  }
 }
 
 - (void)viewDidUnload {
@@ -66,13 +62,22 @@
 
 #pragma mark - KYCircleMenu Button Action
 
+// Run button action depend on their tags
+//
+//       1       1   2      1   2     1   2     1 2 3     1 2 3
+//      \|/       \|/        \|/       \|/       \|/       \|/
+//  1) --|--  2) --|--   3) --|--  4) --|--  5) --|--  6) --|--
+//      /|\       /|\        /|\       /|\       /|\       /|\
+//                            3       4   3     5   4     6 5 4
+//
 - (void)runButtonActions:(id)sender {
   [super runButtonActions:sender];
   
-  // configure new view & push it with custom |pushViewController:| method
+  // Configure new view & push it with custom |pushViewController:| method
   UIViewController * viewController = [[UIViewController alloc] init];
   [viewController.view setBackgroundColor:[UIColor blackColor]];
   [viewController setTitle:[NSString stringWithFormat:@"%d", [sender tag]]];
+  // Use KYCircleMenu's |-pushViewController:| to push vc
   [self pushViewController:viewController];
   [viewController release];
 }
