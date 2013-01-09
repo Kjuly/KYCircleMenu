@@ -43,6 +43,10 @@
 static CGFloat menuSize_,         // size of menu
                buttonSize_,       // size of buttons around
                centerButtonSize_; // size of center button
+static CGFloat defaultTriangleHypotenuse_,
+               minBounceOfTriangleHypotenuse_,
+               maxBounceOfTriangleHypotenuse_,
+               maxTriangleHypotenuse_;
 
 
 @implementation KYCircleMenu
@@ -87,6 +91,12 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
     centerButtonSize_                = centerButtonSize;
     centerButtonImageName_           = centerButtonImageName;
     centerButtonBackgroundImageName_ = centerButtonBackgroundImageName;
+    
+    // Defualt value for triangle hypotenuse
+    defaultTriangleHypotenuse_     = (menuSize - buttonSize) / 2.f;
+    minBounceOfTriangleHypotenuse_ = defaultTriangleHypotenuse_ - 12.f;
+    maxBounceOfTriangleHypotenuse_ = defaultTriangleHypotenuse_ + 12.f;
+    maxTriangleHypotenuse_         = kKYCircleMenuViewHeight / 2.f;
     
     // Buttons' origin frame
     CGFloat originX = (menuSize_ - centerButtonSize_) / 2;
@@ -223,7 +233,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                       options:UIViewAnimationOptionCurveEaseInOut
                    animations:^{
                      // Slide away buttons in center view & hide them
-                     [self _updateButtonsLayoutWithTriangleHypotenuse:300.f];
+                     [self _updateButtonsLayoutWithTriangleHypotenuse:maxTriangleHypotenuse_];
                      [self.menu setAlpha:0.f];
                      
                      /*/ Show Navigation Bar
@@ -251,14 +261,14 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                    animations:^{
                      [self.menu setAlpha:1.f];
                      // Compute buttons' frame and set for them, based on |buttonCount|
-                     [self _updateButtonsLayoutWithTriangleHypotenuse:125.f];
+                     [self _updateButtonsLayoutWithTriangleHypotenuse:maxBounceOfTriangleHypotenuse_];
                    }
                    completion:^(BOOL finished) {
                      [UIView animateWithDuration:.1f
                                            delay:0.f
                                          options:UIViewAnimationCurveEaseInOut
                                       animations:^{
-                                        [self _updateButtonsLayoutWithTriangleHypotenuse:112.f];
+                                        [self _updateButtonsLayoutWithTriangleHypotenuse:defaultTriangleHypotenuse_];
                                       }
                                       completion:^(BOOL finished) {
                                         isOpening_ = YES;
@@ -270,21 +280,21 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 // Recover to normal status
 - (void)recoverToNormalStatus {
-  [self _updateButtonsLayoutWithTriangleHypotenuse:300.f];
+  [self _updateButtonsLayoutWithTriangleHypotenuse:maxTriangleHypotenuse_];
   [UIView animateWithDuration:.3f
                         delay:0.f
                       options:UIViewAnimationOptionCurveEaseInOut
                    animations:^{
                      // Show buttons & slide in to center
                      [self.menu setAlpha:1.f];
-                     [self _updateButtonsLayoutWithTriangleHypotenuse:100.f];
+                     [self _updateButtonsLayoutWithTriangleHypotenuse:minBounceOfTriangleHypotenuse_];
                    }
                    completion:^(BOOL finished) {
                      [UIView animateWithDuration:.1f
                                            delay:0.f
                                          options:UIViewAnimationOptionCurveEaseInOut
                                       animations:^{
-                                        [self _updateButtonsLayoutWithTriangleHypotenuse:112.f];
+                                        [self _updateButtonsLayoutWithTriangleHypotenuse:defaultTriangleHypotenuse_];
                                       }
                                       completion:nil];
                    }];
@@ -342,7 +352,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   //
   CGFloat centerBallMenuHalfSize = menuSize_         / 2.f;
   CGFloat buttonRadius           = centerButtonSize_ / 2.f;
-  if (! triangleHypotenuse) triangleHypotenuse = 112.f; // Distance to Ball Center
+  if (! triangleHypotenuse) triangleHypotenuse = defaultTriangleHypotenuse_; // Distance to Ball Center
   
   //
   //      o       o   o      o   o     o   o     o o o     o o o

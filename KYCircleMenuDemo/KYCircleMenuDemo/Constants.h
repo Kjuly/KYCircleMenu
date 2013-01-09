@@ -10,8 +10,7 @@
 
 #pragma mark - Basic Configuration - prefix: KYC
 
-// Number of buttons around the circle menu (for KYCircleMenu)
-#define kKYCCircleMenuButtonsCount 6
+
 
 #pragma mark -
 #pragma mark - View  - prefix: KY
@@ -23,9 +22,11 @@
 
 #pragma mark - KYCircleMenu Configuration
 
+// Number of buttons around the circle menu
+#define kKYCCircleMenuButtonsCount 6
 // Circle Menu
 // Basic constants
-#define kKYCircleMenuSize             305.f
+#define kKYCircleMenuSize             280.f
 #define kKYCircleMenuButtonSize       kKYButtonInNormalSize
 #define kKYCircleMenuCenterButtonSize kKYButtonInNormalSize
 // Image
