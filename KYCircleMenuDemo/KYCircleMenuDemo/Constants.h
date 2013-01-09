@@ -34,6 +34,10 @@
 #define kKYButtonInSmallSize  32.f
 #define kKYButtonInNormalSize 64.f
 
+// Circle Menu
+#define kKYCircleMenuSize           305.f
+#define kKYCircleMenuButtonSize     64.f
+#define kKYCircleMenuMainButtonSize 64.f
 
 @interface Constants : NSObject
 

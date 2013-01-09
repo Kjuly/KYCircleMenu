@@ -16,11 +16,6 @@
 #define kKYICircleMenuMainButtonNormal     @"KYICircleMenuMainButtonNormal.png"
 #define kKYICircleMenuMainButtonBackground @"KYICircleMenuMainButtonBackground.png"
 
-// View Constants - Prefix: kKY
-#define kKYCircleMenuMainButtonSize 64.f
-#define kKYCircleMenuSize           305.f
-#define kKYCircleMenuButtonSize     64.f
-
 
 @interface KYCircleMenu : UIViewController {
   UIButton * mainButton_;
@@ -36,7 +31,11 @@
 @property (nonatomic, assign) BOOL       isInProcessing;
 @property (nonatomic, assign) BOOL       isClosed;
 
-- (id)initWithButtonCount:(NSInteger)buttonCount;
+- (id)initWithButtonCount:(NSInteger)buttonCount     // count of buttons around
+                 menuSize:(CGFloat)menuSize          // size of menu
+               buttonSize:(CGFloat)buttonSize        // size of buttons around
+         centerButtonSize:(CGFloat)centerButtonSize; // size of center button
+
 - (void)runButtonActions:(id)sender;
 - (void)pushViewController:(id)viewController;
 //- (void)checkDeviceSystemFor:(id)viewController;
