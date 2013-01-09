@@ -59,18 +59,16 @@ static CGFloat menuSize_,         // size of menu
     menuSize_         = menuSize;
     buttonSize_       = buttonSize;
     centerButtonSize_ = centerButtonSize;
-    
-    isInProcessing_ = NO;
-    isOpening_      = NO;
-    isClosed_       = YES;
   }
   return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init {
+  self = [super init];
   if (self) {
-    // Custom initialization
+    isInProcessing_ = NO;
+    isOpening_      = NO;
+    isClosed_       = YES;
   }
   return self;
 }
@@ -87,10 +85,8 @@ static CGFloat menuSize_,         // size of menu
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
   UIView * view = [[UIView alloc] init];
-  if (self.navigationController == nil)
-    [view setFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeight)];
-  else
-    [view setFrame:CGRectMake(0.f, 0.f, kKYViewWidth, kKYViewHeight - kKYNavigationBarHeight)];
+  CGFloat viewHeight = (self.navigationController ? kKYViewHeight - kKYNavigationBarHeight :kKYViewHeight);
+  [view setFrame:(CGRect){CGPointZero, {kKYViewWidth, viewHeight}}];
   self.view = view;
   [view release];
 }
@@ -104,8 +100,7 @@ static CGFloat menuSize_,         // size of menu
   
   // Center Menu View
   CGRect centerMenuFrame =
-    CGRectMake((viewWidth - menuSize_) / 2, (viewHeight - menuSize_) / 2,
-               menuSize_, menuSize_);
+    CGRectMake((viewWidth - menuSize_) / 2, (viewHeight - menuSize_) / 2, menuSize_, menuSize_);
   UIView * centerMenu = [[UIView alloc] initWithFrame:centerMenuFrame];
   [centerMenu setAlpha:0.f];
   self.centerMenu = centerMenu;
@@ -117,10 +112,10 @@ static CGFloat menuSize_,         // size of menu
                                   (menuSize_ - centerButtonSize_) / 2,
                                   centerButtonSize_,
                                   centerButtonSize_);
-  for (int i = 0; i < buttonCount_;) {
+  for (int i = 1; i <= buttonCount_; ++i) {
     UIButton * button = [[UIButton alloc] initWithFrame:buttonOriginFrame_];
     [button setOpaque:NO];
-    [button setTag:++i];
+    [button setTag:i];
     [button addTarget:self action:@selector(runButtonActions:) forControlEvents:UIControlEventTouchUpInside];
     [self.centerMenu addSubview:button];
     [button release];
@@ -151,15 +146,7 @@ static CGFloat menuSize_,         // size of menu
 
 - (void)viewDidUnload {
   [super viewDidUnload];
-  self.centerMenu = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
+  [self _releaseSubviews];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -301,8 +288,8 @@ static CGFloat menuSize_,         // size of menu
   //
   //  Triangle Values for Buttons' Position
   // 
-  //      /|      a: triangleA = c * COSx 
-  //   c / | b    b: triangleB = c * SINx
+  //      /|      a: triangleA = c * cos(x)
+  //   c / | b    b: triangleB = c * sin(x)
   //    /)x|      c: triangleHypotenuse
   //   -----      x: degree
   //     a
