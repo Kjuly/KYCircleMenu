@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - Basic Configuration - prefix: KYC
+
+#define kKYCCircleMenuButtonsCount 6
+
 #pragma mark - Key of Settings.bundle - prefix: KYS
 
 #pragma mark - Key of Notification Name - prefix: KYN
