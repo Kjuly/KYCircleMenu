@@ -10,6 +10,11 @@ A circle menu with toggling animation. And you can customize the number of butto
 ![](https://raw.github.com/Kjuly/KYCircleMenu/dev/DemoScreenshot/demo_screenshot_5.png)
 ![](https://raw.github.com/Kjuly/KYCircleMenu/dev/DemoScreenshot/demo_screenshot_6.png)
 
+This control is separated from [iPokeMon](https://github.com/Kjuly/iPokeMon) (a PokéMon game on iOS with Location Based Service), you can take a look at the demo video how cool it is!
+
+- [Youtube](http://www.youtube.com/watch?v=otiBQnwdt0U) - 2012-05-09
+- [Youku](http://v.youku.com/v_show/id_XNDA1MjExMDg4.html) - 2012-06-03 (Newer)
+
 # Usage
 
 ### Designated Initializer
