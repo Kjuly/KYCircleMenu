@@ -22,17 +22,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   // Override point for customization after application launch.
   
-  // Navigation Controller
-  UINavigationController * navigationController = [UINavigationController alloc];
-  
-  // Circle Menu
+  // Setup circle menu with basic configuration
   CircleMenuViewController * circleMenuViewController;
   circleMenuViewController = [CircleMenuViewController alloc];
-  // Set the cricle menu vc as the root vc
-  [navigationController initWithRootViewController:circleMenuViewController];
-  [navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
-  
-  // Setup circle menu with basic configuration
   [circleMenuViewController initWithButtonCount:kKYCCircleMenuButtonsCount
                                        menuSize:kKYCircleMenuSize
                                      buttonSize:kKYCircleMenuButtonSize
@@ -40,7 +32,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
                                centerButtonSize:kKYCircleMenuCenterButtonSize
                           centerButtonImageName:kKYICircleMenuCenterButton
                 centerButtonBackgroundImageName:kKYICircleMenuCenterButtonBackground];
+  // Navigation Controller
+  UINavigationController * navigationController = [UINavigationController alloc];
+  // Set the cricle menu vc as the root vc
+  [navigationController initWithRootViewController:circleMenuViewController];
   [circleMenuViewController release];
+  [navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
+  [navigationController setNavigationBarHidden:YES];
+#endif
   
   // Set navigation controller as the root vc
   [self.window setRootViewController:navigationController];
