@@ -214,11 +214,6 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
-#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
-  [self.navigationController setNavigationBarHidden:YES animated:YES];
-#endif
-  
   // If it is from child view by press the buttons,
   //   recover menu to normal state
   if (shouldRecoverToNormalStatusWhenViewWillAppear_)
@@ -265,6 +260,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                    }
                    completion:^(BOOL finished) {
                      [self.navigationController pushViewController:viewController animated:YES];
+                     state_ = kKYCircleMenuStateSpread;
                    }];
 }
 
@@ -300,7 +296,6 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 // Recover to normal status
 - (void)recoverToNormalStatus {
-  [self _updateButtonsLayoutWithTriangleHypotenuse:maxTriangleHypotenuse_];
   [UIView animateWithDuration:.3f
                         delay:0.f
                       options:UIViewAnimationOptionCurveEaseInOut
@@ -308,6 +303,9 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                      // Show buttons & slide in to center
                      [self.menu setAlpha:1.f];
                      [self _updateButtonsLayoutWithTriangleHypotenuse:minBounceOfTriangleHypotenuse_];
+#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
+                     [self _setNavigationBarHidden:YES];
+#endif
                    }
                    completion:^(BOOL finished) {
                      [UIView animateWithDuration:.1f
@@ -328,9 +326,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
     return;
   
   // Closure
-  if (state == kKYCircleMenuStateClosure) {
+  if (state == kKYCircleMenuStateClosure)
     [self _close:nil];
-  }
   // Expand
   else if (state == kKYCircleMenuStateExpand) {
     if (state_ == kKYCircleMenuStateClosure)
@@ -356,7 +353,6 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                           animations:animations
                           completion:nil];
   }
-  
   state_ = state;
 }
 
@@ -374,14 +370,15 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 // Navigation bar
 - (void)_setNavigationBarHidden:(BOOL)hidden {
-  if (self.navigationController.isNavigationBarHidden != hidden)
-    [self.navigationController setNavigationBarHidden:hidden];
   CGRect navigationBarFrame = self.navigationController.navigationBar.frame;
   CGFloat originY = navigationBarFrame.origin.y;
   if      (  hidden && originY >= 0.f) originY -= kKYCircleMenuNavigationBarHeight;
   else if (! hidden && originY < 0.f)  originY += kKYCircleMenuNavigationBarHeight;
   else return;
   [self.navigationController.navigationBar setFrame:navigationBarFrame];
+  
+  if (self.navigationController.isNavigationBarHidden != hidden)
+    [self.navigationController setNavigationBarHidden:hidden];
 }
 
 // Toggle Circle Menu
