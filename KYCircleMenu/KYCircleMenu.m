@@ -10,6 +10,8 @@
 
 @interface KYCircleMenu () {
  @private
+  KYCircleMenuState state_;
+  
   NSInteger buttonCount_;
   CGRect    buttonOriginFrame_;
   
@@ -27,12 +29,17 @@
 - (void)_releaseSubviews;
 - (void)_setupNotificationObserver;
 
+// Navigation bar
+- (void)_setNavigationBarHidden:(BOOL)hidden;
+
 // Toggle menu beween open & closed
 - (void)_toggle:(id)sender;
 // Close menu to hide all buttons around
 - (void)_close:(NSNotification *)notification;
+
 // Update buttons' layout with the value of triangle hypotenuse that given
 - (void)_updateButtonsLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse;
+
 // Update button's origin value
 - (void)_setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin;
 
@@ -66,7 +73,7 @@ static CGFloat defaultTriangleHypotenuse_,
     self.centerButtonBackgroundImageName = nil;
   // Release subvies & remove notification observer
   [self _releaseSubviews];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:kKYNCircleMenuClose object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   [super dealloc];
 }
 
@@ -88,12 +95,17 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
     menuSize_                        = menuSize;
     buttonSize_                      = buttonSize;
     buttonImageNameFormat_           = buttonImageNameFormat;
-    centerButtonSize_                = centerButtonSize;
-    centerButtonImageName_           = centerButtonImageName;
-    centerButtonBackgroundImageName_ = centerButtonBackgroundImageName;
+    // Include |centerButton_| if |centerButtonSize| is not equal to ZERO
+    if (centerButtonSize) {
+      centerButtonSize_                = centerButtonSize;
+      centerButtonImageName_           = centerButtonImageName;
+      centerButtonBackgroundImageName_ = centerButtonBackgroundImageName;
+      centerButton_ = [[UIButton alloc] init];
+    }
+    else centerButtonSize_ = buttonSize;
     
     // Defualt value for triangle hypotenuse
-    defaultTriangleHypotenuse_     = (menuSize - buttonSize) / 2.f;
+    defaultTriangleHypotenuse_     = (menuSize - centerButtonSize_) / 2.f;
     minBounceOfTriangleHypotenuse_ = defaultTriangleHypotenuse_ - 12.f;
     maxBounceOfTriangleHypotenuse_ = defaultTriangleHypotenuse_ + 12.f;
     maxTriangleHypotenuse_         = kKYCircleMenuViewHeight / 2.f;
@@ -110,12 +122,13 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 - (id)init {
   self = [super init];
   if (self) {
+    state_          = kKYCircleMenuStateClosure;
     isInProcessing_ = NO;
     isOpening_      = NO;
     isClosed_       = YES;
     shouldRecoverToNormalStatusWhenViewWillAppear_ = NO;
 #ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
-    [self.navigationController setNavigationBarHidden:YES];
+    [self _setNavigationBarHidden:YES];
 #endif
   }
   return self;
@@ -171,19 +184,24 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   }
   
   // Main Button
-  CGRect mainButtonFrame =
-    CGRectMake((CGRectGetWidth(self.view.frame) - centerButtonSize_) / 2.f,
-               (CGRectGetHeight(self.view.frame) - centerButtonSize_) / 2.f,
-               centerButtonSize_, centerButtonSize_);
-  centerButton_ = [[UIButton alloc] initWithFrame:mainButtonFrame];
-  [centerButton_ setBackgroundImage:[UIImage imageNamed:self.centerButtonBackgroundImageName]
-                           forState:UIControlStateNormal];
-  [centerButton_ setImage:[UIImage imageNamed:self.centerButtonImageName]
-                 forState:UIControlStateNormal];
-  [centerButton_ addTarget:self
-                    action:@selector(_toggle:)
-          forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:centerButton_];
+  // Only inclue center main button when it is initialized.
+  // i.e. When |centerButtonSize| in the designated initializer, do need to
+  //   add the |centerButton_|.
+  if (self.centerButton) {
+    CGRect mainButtonFrame =
+      CGRectMake((CGRectGetWidth(self.view.frame) - centerButtonSize_) / 2.f,
+                 (CGRectGetHeight(self.view.frame) - centerButtonSize_) / 2.f,
+                 centerButtonSize_, centerButtonSize_);
+    [centerButton_ setFrame:mainButtonFrame];
+    [centerButton_ setBackgroundImage:[UIImage imageNamed:self.centerButtonBackgroundImageName]
+                             forState:UIControlStateNormal];
+    [centerButton_ setImage:[UIImage imageNamed:self.centerButtonImageName]
+                   forState:UIControlStateNormal];
+    [centerButton_ addTarget:self
+                      action:@selector(_toggle:)
+            forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:centerButton_];
+  }
   
   // Setup notification observer
   [self _setupNotificationObserver];
@@ -228,6 +246,11 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 
 // Push View Controller
 - (void)pushViewController:(id)viewController {
+#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
+  // Make sure the navigation bar is hidden
+  //   when the root view does not include it (hidden)
+  [self _setNavigationBarHidden:YES];
+#endif
   [UIView animateWithDuration:.3f
                         delay:0.f
                       options:UIViewAnimationOptionCurveEaseInOut
@@ -235,14 +258,10 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                      // Slide away buttons in center view & hide them
                      [self _updateButtonsLayoutWithTriangleHypotenuse:maxTriangleHypotenuse_];
                      [self.menu setAlpha:0.f];
-                     
-                     /*/ Show Navigation Bar
-                     [self.navigationController setNavigationBarHidden:NO];
-                     CGRect navigationBarFrame = self.navigationController.navigationBar.frame;
-                     if (navigationBarFrame.origin.y < 0) {
-                       navigationBarFrame.origin.y = 0;
-                       [self.navigationController.navigationBar setFrame:navigationBarFrame];
-                     }*/
+#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
+                     // Show navigation bar for the child view controller
+                     [self _setNavigationBarHidden:NO];
+#endif
                    }
                    completion:^(BOOL finished) {
                      [self.navigationController pushViewController:viewController animated:YES];
@@ -257,7 +276,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   // Show buttons with animation
   [UIView animateWithDuration:.3f
                         delay:0.f
-                      options:UIViewAnimationCurveEaseInOut
+                      options:(UIViewAnimationOptions)UIViewAnimationCurveEaseInOut
                    animations:^{
                      [self.menu setAlpha:1.f];
                      // Compute buttons' frame and set for them, based on |buttonCount|
@@ -266,7 +285,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                    completion:^(BOOL finished) {
                      [UIView animateWithDuration:.1f
                                            delay:0.f
-                                         options:UIViewAnimationCurveEaseInOut
+                                         options:(UIViewAnimationOptions)UIViewAnimationCurveEaseInOut
                                       animations:^{
                                         [self _updateButtonsLayoutWithTriangleHypotenuse:defaultTriangleHypotenuse_];
                                       }
@@ -274,6 +293,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                                         isOpening_ = YES;
                                         isClosed_ = NO;
                                         isInProcessing_ = NO;
+                                        state_ = kKYCircleMenuStateExpand;
                                       }];
                    }];
 }
@@ -297,7 +317,47 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                                         [self _updateButtonsLayoutWithTriangleHypotenuse:defaultTriangleHypotenuse_];
                                       }
                                       completion:nil];
+                     state_ = kKYCircleMenuStateExpand;
                    }];
+}
+
+// Update buttons' layout for the state
+- (void)updateButtonsLayoutForState:(KYCircleMenuState)state
+                           animated:(BOOL)animated {
+  if (state == kKYCircleMenuStateNone)
+    return;
+  
+  // Closure
+  if (state == kKYCircleMenuStateClosure) {
+    [self _close:nil];
+  }
+  // Expand
+  else if (state == kKYCircleMenuStateExpand) {
+    if (state_ == kKYCircleMenuStateClosure)
+      [self open];
+    else if (state_ == kKYCircleMenuStateSpread)
+      [self recoverToNormalStatus];
+  }
+  // Spread
+  else if (state == kKYCircleMenuStateSpread) {
+    void (^animations)() = ^{
+      // Slide away buttons in center view & hide them
+      [self _updateButtonsLayoutWithTriangleHypotenuse:maxTriangleHypotenuse_];
+      [self.menu setAlpha:0.f];
+#ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
+      // Show navigation bar for the child view controller
+      [self _setNavigationBarHidden:NO];
+#endif
+    };
+    if (! animated) animations();
+    else [UIView animateWithDuration:.3f
+                               delay:0.f
+                             options:UIViewAnimationOptionCurveEaseInOut
+                          animations:animations
+                          completion:nil];
+  }
+  
+  state_ = state;
 }
 
 #pragma mark - Private Methods
@@ -310,6 +370,18 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                                            selector:@selector(_close:)
                                                name:kKYNCircleMenuClose
                                              object:nil];
+}
+
+// Navigation bar
+- (void)_setNavigationBarHidden:(BOOL)hidden {
+  if (self.navigationController.isNavigationBarHidden != hidden)
+    [self.navigationController setNavigationBarHidden:hidden];
+  CGRect navigationBarFrame = self.navigationController.navigationBar.frame;
+  CGFloat originY = navigationBarFrame.origin.y;
+  if      (  hidden && originY >= 0.f) originY -= kKYCircleMenuNavigationBarHeight;
+  else if (! hidden && originY < 0.f)  originY += kKYCircleMenuNavigationBarHeight;
+  else return;
+  [self.navigationController.navigationBar setFrame:navigationBarFrame];
 }
 
 // Toggle Circle Menu
@@ -326,7 +398,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   // Hide buttons with animation
   [UIView animateWithDuration:.3f
                         delay:0.f
-                      options:UIViewAnimationCurveEaseIn
+                      options:(UIViewAnimationOptions)UIViewAnimationCurveEaseIn
                    animations:^{
                      for (UIButton * button in [self.menu subviews])
                        [button setFrame:buttonOriginFrame_];
@@ -336,6 +408,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                      isClosed_       = YES;
                      isOpening_      = NO;
                      isInProcessing_ = NO;
+                     state_ = kKYCircleMenuStateClosure;
                    }];
 }
 
@@ -454,8 +527,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 // Set Frame for button with special tag
 - (void)_setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin {
   UIButton * button = (UIButton *)[self.menu viewWithTag:buttonTag];
-  [button setFrame:CGRectMake(origin.x, origin.y, centerButtonSize_, centerButtonSize_)];
-  button = nil;
+  [button setFrame:(CGRect){origin, {centerButtonSize_, centerButtonSize_}}];
 }
 
 @end

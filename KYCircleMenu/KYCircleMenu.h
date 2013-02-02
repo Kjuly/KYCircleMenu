@@ -22,6 +22,13 @@
 // Notification to close the menu
 #define kKYNCircleMenuClose @"KYNCircleMenuClose"
 
+typedef enum {
+  kKYCircleMenuStateNone = 0,
+  kKYCircleMenuStateClosure,
+  kKYCircleMenuStateExpand,
+  kKYCircleMenuStateSpread
+}KYCircleMenuState;
+
 
 @interface KYCircleMenu : UIViewController {
   UIView   * menu_;
@@ -67,5 +74,9 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
 
 // Recover all buttons to normal position
 - (void)recoverToNormalStatus;
+
+// Update buttons' layout for current state
+- (void)updateButtonsLayoutForState:(KYCircleMenuState)currentState
+                           animated:(BOOL)animated;
 
 @end

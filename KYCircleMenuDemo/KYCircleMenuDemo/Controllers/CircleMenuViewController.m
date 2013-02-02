@@ -22,14 +22,10 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  [self.view setFrame:(CGRect){CGPointZero, {kKYCircleMenuViewWidth, kKYCircleMenuViewHeight}}];
   // Modify buttons' style in circle menu
   for (UIButton * button in [self.menu subviews])
     [button setAlpha:.95f];
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - KYCircleMenu Button Action
