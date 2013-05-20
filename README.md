@@ -12,6 +12,13 @@ A circle menu with toggling animation. And you can customize the number of butto
 
 This control is separated from [iPokeMon](https://github.com/Kjuly/iPokeMon) (a PokéMon game on iOS with Location Based Service), you can take a look at the demo video how cool it is!
 
+<!-- MacBuildServer Install Button -->
+<div class="macbuildserver-block">
+    <a class="macbuildserver-button" href="http://macbuildserver.com/project/github/build/?xcode_project=KYCircleMenuDemo%2FKYCircleMenuDemo.xcodeproj&amp;target=KYCircleMenuDemo&amp;repo_url=git%3A%2F%2Fgithub.com%2FKjuly%2FKYCircleMenu.git&amp;build_conf=Release" target="_blank"><img src="http://com.macbuildserver.github.s3-website-us-east-1.amazonaws.com/button_up.png"/></a><br/><sup><a href="http://macbuildserver.com/github/opensource/" target="_blank">by MacBuildServer</a></sup>
+</div>
+<!-- MacBuildServer Install Button -->
+
+
 - [Youtube](http://www.youtube.com/watch?v=otiBQnwdt0U) - 2012-05-09
 - [Youku](http://v.youku.com/v_show/id_XNDA1MjExMDg4.html) - 2012-06-03 (Newer)
 
