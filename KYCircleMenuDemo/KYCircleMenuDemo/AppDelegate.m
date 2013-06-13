@@ -25,14 +25,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Navigation Controller
   UINavigationController * navigationController = [UINavigationController alloc];
   
-  // Circle Menu
+  // Setup circle menu with basic configuration
   CircleMenuViewController * circleMenuViewController;
   circleMenuViewController = [CircleMenuViewController alloc];
-  // Set the cricle menu vc as the root vc
-  (void)[navigationController initWithRootViewController:circleMenuViewController];
-  [navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
-  
-  // Setup circle menu with basic configuration
   (void)[circleMenuViewController initWithButtonCount:kKYCCircleMenuButtonsCount
                                              menuSize:kKYCircleMenuSize
                                            buttonSize:kKYCircleMenuButtonSize
@@ -40,6 +35,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
                                      centerButtonSize:kKYCircleMenuCenterButtonSize
                                 centerButtonImageName:kKYICircleMenuCenterButton
                       centerButtonBackgroundImageName:kKYICircleMenuCenterButtonBackground];
+  
+  // Set the cricle menu vc as the root vc
+  (void)[navigationController initWithRootViewController:circleMenuViewController];
+  [navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
   [circleMenuViewController release];
   
   // Set navigation controller as the root vc
