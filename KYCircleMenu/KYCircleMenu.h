@@ -37,13 +37,18 @@
 @property (nonatomic, assign) BOOL       isInProcessing;
 @property (nonatomic, assign) BOOL       isClosed;
 
-// |buttonCount| : count of buttons around (1<= x <=6)
-// |menuSize| : size of menu
-// |buttonSize| : size of buttons around
-// |buttonImageNameFormat| : name format for button image
-// |centerButtonSize| : size of center button
-// |centerButtonImageName| : name for center button image
-// |centerButtonBackgroundImageName| : name for center button background image
+/*! Designated initializer for KYCircleMenu.
+ *
+ * \param buttonCount Count of buttons around (1<= x <=6)
+ * \param menuSize Size of menu
+ * \param buttonSize Size of buttons around
+ * \param buttonImageNameFormat Name format for button image
+ * \param centerButtonSize Size of center button
+ * \param centerButtonImageName Name for center button image
+ * \param centerButtonBackgroundImageName Name for center button background image
+ *
+ * \returns An KYCircleMenu instance
+ */
 - (id)      initWithButtonCount:(NSInteger)buttonCount
                        menuSize:(CGFloat)menuSize
                      buttonSize:(CGFloat)buttonSize
@@ -52,20 +57,28 @@
           centerButtonImageName:(NSString *)centerButtonImageName
 centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
 
-// Run action for buttons around.
-// Override this message to do custom jobs,
-//   but with |[super runButtonActions:sender];| at top.
+/*! Run action for buttons around.
+ *  Override this message to do custom jobs,
+ *    but with |[super runButtonActions:sender];| at top.
+ *
+ * \param sender One of the button in circle menu
+ */
 - (void)runButtonActions:(id)sender;
 
-// Custom push message to manage menu & the child views well.
-// When press a button, dispatch this message to swipe away the menu buttons,
-//   and push the new view controller appropriately
+/*! Custom push message to manage menu & the child views well.
+ *  When press a button, dispatch this message to swipe away the menu buttons,
+ *    and push the new view controller appropriately
+ *
+ * \param viewController The target view controller to be pushed
+ */
 - (void)pushViewController:(id)viewController;
 
-// Open menu to show all buttons around
+/*! Open menu to show all buttons around
+ */
 - (void)open;
 
-// Recover all buttons to normal position
+/*! Recover all buttons to normal position
+ */
 - (void)recoverToNormalStatus;
 
 @end
