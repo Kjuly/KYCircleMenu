@@ -8,71 +8,48 @@
 
 #import "CircleMenuViewController.h"
 
-@interface CircleMenuViewController () {
- @private
-  NSTimeInterval delayTimeForRecoveringToNormalStatus_;
-}
-
-@end
-
 @implementation CircleMenuViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    // Custom initialization
-  }
+- (void)dealloc {
+  [super dealloc];
+}
+
+- (id)init {
+  if (self = [super init])
+    [self setTitle:@"KYCircleMenu"];
   return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  
-  // Set root menu's title
-  [self setTitle:@"KYCircleMenu"];
-  
-  // set delay time for recovering to normal status
-  delayTimeForRecoveringToNormalStatus_ = (self.navigationController == nil ? 0.f : .3f);
-  
-  // Set Buttons' style in center menu view
-  for (UIButton * button in [self.centerMenu subviews]) {
-    [button setImage:[UIImage imageNamed:[NSString stringWithFormat:kKYICircleMenuButton, button.tag]]
-            forState:UIControlStateNormal];
+  // Modify buttons' style in circle menu
+  for (UIButton * button in [self.menu subviews])
     [button setAlpha:.95f];
-  }
 }
 
-- (void)viewDidUnload {
-  [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  
-  if (! self.isClosed)
-    // recover circle menu to normal status
-    [self performSelector:@selector(recoverToNormalStatus)
-               withObject:nil
-               afterDelay:delayTimeForRecoveringToNormalStatus_];
-}
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - KYCircleMenu Button Action
 
+// Run button action depend on their tags:
+//
+// TAG:        1       1   2      1   2     1   2     1 2 3     1 2 3
+//            \|/       \|/        \|/       \|/       \|/       \|/
+// COUNT: 1) --|--  2) --|--   3) --|--  4) --|--  5) --|--  6) --|--
+//            /|\       /|\        /|\       /|\       /|\       /|\
+// TAG:                             3       3   4     4   5     4 5 6
+//
 - (void)runButtonActions:(id)sender {
   [super runButtonActions:sender];
   
-  // configure new view & push it with custom |pushViewController:| method
+  // Configure new view & push it with custom |pushViewController:| method
   UIViewController * viewController = [[UIViewController alloc] init];
   [viewController.view setBackgroundColor:[UIColor blackColor]];
-  [viewController setTitle:[NSString stringWithFormat:@"%d", [sender tag]]];
+  [viewController setTitle:[NSString stringWithFormat:@"View %d", [sender tag]]];
+  // Use KYCircleMenu's |-pushViewController:| to push vc
   [self pushViewController:viewController];
   [viewController release];
 }

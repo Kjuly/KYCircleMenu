@@ -13,8 +13,7 @@
 		7F23CE9215B6B11800C99EA5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CE9015B6B11800C99EA5 /* InfoPlist.strings */; };
 		7F23CE9415B6B11800C99EA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CE9315B6B11800C99EA5 /* main.m */; };
 		7F23CE9815B6B11800C99EA5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CE9715B6B11800C99EA5 /* AppDelegate.m */; };
-		7F23CEA115B6B18500C99EA5 /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */; };
-		7F23CEA415B6B22600C99EA5 /* KYConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA315B6B22600C99EA5 /* KYConstants.m */; };
+		7F23CEA415B6B22600C99EA5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEA315B6B22600C99EA5 /* Constants.m */; };
 		7F23CEAB15B6BABD00C99EA5 /* CircleMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23CEAA15B6BABD00C99EA5 /* CircleMenuViewController.m */; };
 		7F23CEBA15B6BE7000C99EA5 /* KYICircleMenuButton01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */; };
 		7F23CEBB15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEAF15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png */; };
@@ -28,10 +27,29 @@
 		7F23CEC315B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB715B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png */; };
 		7F23CEC415B6BE7000C99EA5 /* KYICircleMenuButton06.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB815B6BE7000C99EA5 /* KYICircleMenuButton06.png */; };
 		7F23CEC515B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CEB915B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png */; };
-		7F23CECE15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CECA15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png */; };
-		7F23CED515B6E18500C99EA5 /* KYICircleMenuMainButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED215B6E18300C99EA5 /* KYICircleMenuMainButtonBackground@2x.png */; };
-		7F23CED615B6E18500C99EA5 /* KYICircleMenuMainButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED315B6E18400C99EA5 /* KYICircleMenuMainButtonNormal.png */; };
-		7F23CED715B6E18500C99EA5 /* KYICircleMenuMainButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED415B6E18400C99EA5 /* KYICircleMenuMainButtonNormal@2x.png */; };
+		7F23CECE15B6E13500C99EA5 /* KYICircleMenuCenterButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CECA15B6E13500C99EA5 /* KYICircleMenuCenterButtonBackground.png */; };
+		7F23CED515B6E18500C99EA5 /* KYICircleMenuCenterButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED215B6E18300C99EA5 /* KYICircleMenuCenterButtonBackground@2x.png */; };
+		7F23CED615B6E18500C99EA5 /* KYICircleMenuCenterButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED315B6E18400C99EA5 /* KYICircleMenuCenterButton.png */; };
+		7F23CED715B6E18500C99EA5 /* KYICircleMenuCenterButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7F23CED415B6E18400C99EA5 /* KYICircleMenuCenterButton@2x.png */; };
+		7FA24184169D33060005A37A /* KYCircleMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA24183169D33060005A37A /* KYCircleMenu.m */; };
+		7FA24186169D5BB90005A37A /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 7FA24185169D5BB40005A37A /* iTunesArtwork */; };
+		7FA9120A169C418000767CCF /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA911F8169C417700767CCF /* Default-568h.png */; };
+		7FA9120B169C418000767CCF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA911F9169C417800767CCF /* Default-568h@2x.png */; };
+		7FA9120C169C418000767CCF /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA911FA169C417800767CCF /* Default-Landscape@2x~ipad.png */; };
+		7FA9120D169C418000767CCF /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA911FB169C417900767CCF /* Default-Landscape~ipad.png */; };
+		7FA9120E169C418000767CCF /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA911FC169C417900767CCF /* Default-Portrait@2x~ipad.png */; };
+		7FA9120F169C418000767CCF /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA911FD169C417900767CCF /* Default-Portrait~ipad.png */; };
+		7FA91210169C418000767CCF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA911FE169C417A00767CCF /* Default.png */; };
+		7FA91211169C418000767CCF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA911FF169C417B00767CCF /* Default@2x.png */; };
+		7FA91212169C418000767CCF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91200169C417B00767CCF /* Icon-72.png */; };
+		7FA91213169C418000767CCF /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91201169C417B00767CCF /* Icon-72@2x.png */; };
+		7FA91214169C418000767CCF /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91202169C417C00767CCF /* Icon-Small-50.png */; };
+		7FA91215169C418000767CCF /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91203169C417C00767CCF /* Icon-Small-50@2x.png */; };
+		7FA91216169C418000767CCF /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91204169C417D00767CCF /* Icon-Small.png */; };
+		7FA91217169C418000767CCF /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91205169C417D00767CCF /* Icon-Small@2x.png */; };
+		7FA91218169C418000767CCF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91206169C417D00767CCF /* Icon.png */; };
+		7FA91219169C418000767CCF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91207169C417F00767CCF /* Icon@2x.png */; };
+		7FA9121B169C418000767CCF /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 7FA91209169C418000767CCF /* iTunesArtwork@2x */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,10 +63,8 @@
 		7F23CE9515B6B11800C99EA5 /* KYCircleMenuDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KYCircleMenuDemo-Prefix.pch"; sourceTree = "<group>"; };
 		7F23CE9615B6B11800C99EA5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7F23CE9715B6B11800C99EA5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7F23CE9F15B6B18400C99EA5 /* KYCircleMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KYCircleMenu.h; path = ../../../KYCircleMenu.h; sourceTree = "<group>"; };
-		7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KYCircleMenu.m; path = ../../../KYCircleMenu.m; sourceTree = "<group>"; };
-		7F23CEA215B6B22500C99EA5 /* KYConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYConstants.h; sourceTree = "<group>"; };
-		7F23CEA315B6B22600C99EA5 /* KYConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYConstants.m; sourceTree = "<group>"; };
+		7F23CEA215B6B22500C99EA5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		7F23CEA315B6B22600C99EA5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		7F23CEA915B6BABD00C99EA5 /* CircleMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleMenuViewController.h; sourceTree = "<group>"; };
 		7F23CEAA15B6BABD00C99EA5 /* CircleMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleMenuViewController.m; sourceTree = "<group>"; };
 		7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton01.png; sourceTree = "<group>"; };
@@ -63,10 +79,30 @@
 		7F23CEB715B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton05@2x.png"; sourceTree = "<group>"; };
 		7F23CEB815B6BE7000C99EA5 /* KYICircleMenuButton06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuButton06.png; sourceTree = "<group>"; };
 		7F23CEB915B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuButton06@2x.png"; sourceTree = "<group>"; };
-		7F23CECA15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuMainButtonBackground.png; sourceTree = "<group>"; };
-		7F23CED215B6E18300C99EA5 /* KYICircleMenuMainButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuMainButtonBackground@2x.png"; sourceTree = "<group>"; };
-		7F23CED315B6E18400C99EA5 /* KYICircleMenuMainButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuMainButtonNormal.png; sourceTree = "<group>"; };
-		7F23CED415B6E18400C99EA5 /* KYICircleMenuMainButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuMainButtonNormal@2x.png"; sourceTree = "<group>"; };
+		7F23CECA15B6E13500C99EA5 /* KYICircleMenuCenterButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuCenterButtonBackground.png; sourceTree = "<group>"; };
+		7F23CED215B6E18300C99EA5 /* KYICircleMenuCenterButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuCenterButtonBackground@2x.png"; sourceTree = "<group>"; };
+		7F23CED315B6E18400C99EA5 /* KYICircleMenuCenterButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KYICircleMenuCenterButton.png; sourceTree = "<group>"; };
+		7F23CED415B6E18400C99EA5 /* KYICircleMenuCenterButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KYICircleMenuCenterButton@2x.png"; sourceTree = "<group>"; };
+		7FA24182169D33060005A37A /* KYCircleMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYCircleMenu.h; sourceTree = "<group>"; };
+		7FA24183169D33060005A37A /* KYCircleMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYCircleMenu.m; sourceTree = "<group>"; };
+		7FA24185169D5BB40005A37A /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		7FA911F8169C417700767CCF /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h.png"; sourceTree = "<group>"; };
+		7FA911F9169C417800767CCF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7FA911FA169C417800767CCF /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		7FA911FB169C417900767CCF /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		7FA911FC169C417900767CCF /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		7FA911FD169C417900767CCF /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		7FA911FE169C417A00767CCF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7FA911FF169C417B00767CCF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7FA91200169C417B00767CCF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		7FA91201169C417B00767CCF /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		7FA91202169C417C00767CCF /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		7FA91203169C417C00767CCF /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		7FA91204169C417D00767CCF /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		7FA91205169C417D00767CCF /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		7FA91206169C417D00767CCF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		7FA91207169C417F00767CCF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		7FA91209169C418000767CCF /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +122,7 @@
 		7F23CE7815B6B11800C99EA5 = {
 			isa = PBXGroup;
 			children = (
+				7FA24181169D33060005A37A /* KYCircleMenu */,
 				7F23CE8D15B6B11800C99EA5 /* KYCircleMenuDemo */,
 				7F23CE8615B6B11800C99EA5 /* Frameworks */,
 				7F23CE8415B6B11800C99EA5 /* Products */,
@@ -115,11 +152,9 @@
 			children = (
 				7F23CE9615B6B11800C99EA5 /* AppDelegate.h */,
 				7F23CE9715B6B11800C99EA5 /* AppDelegate.m */,
-				7F23CEA215B6B22500C99EA5 /* KYConstants.h */,
-				7F23CEA315B6B22600C99EA5 /* KYConstants.m */,
-				7F23CEC615B6DE7D00C99EA5 /* Views */,
+				7F23CEA215B6B22500C99EA5 /* Constants.h */,
+				7F23CEA315B6B22600C99EA5 /* Constants.m */,
 				7F23CEA515B6B4D100C99EA5 /* Controllers */,
-				7F23CE9E15B6B17400C99EA5 /* Libs */,
 				7F23CEAC15B6BE7000C99EA5 /* Resources */,
 				7F23CE8E15B6B11800C99EA5 /* Supporting Files */,
 			);
@@ -137,15 +172,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7F23CE9E15B6B17400C99EA5 /* Libs */ = {
-			isa = PBXGroup;
-			children = (
-				7F23CE9F15B6B18400C99EA5 /* KYCircleMenu.h */,
-				7F23CEA015B6B18400C99EA5 /* KYCircleMenu.m */,
-			);
-			path = Libs;
-			sourceTree = "<group>";
-		};
 		7F23CEA515B6B4D100C99EA5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +184,24 @@
 		7F23CEAC15B6BE7000C99EA5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7FA911F8169C417700767CCF /* Default-568h.png */,
+				7FA911F9169C417800767CCF /* Default-568h@2x.png */,
+				7FA911FA169C417800767CCF /* Default-Landscape@2x~ipad.png */,
+				7FA911FB169C417900767CCF /* Default-Landscape~ipad.png */,
+				7FA911FC169C417900767CCF /* Default-Portrait@2x~ipad.png */,
+				7FA911FD169C417900767CCF /* Default-Portrait~ipad.png */,
+				7FA911FE169C417A00767CCF /* Default.png */,
+				7FA911FF169C417B00767CCF /* Default@2x.png */,
+				7FA91200169C417B00767CCF /* Icon-72.png */,
+				7FA91201169C417B00767CCF /* Icon-72@2x.png */,
+				7FA91202169C417C00767CCF /* Icon-Small-50.png */,
+				7FA91203169C417C00767CCF /* Icon-Small-50@2x.png */,
+				7FA91204169C417D00767CCF /* Icon-Small.png */,
+				7FA91205169C417D00767CCF /* Icon-Small@2x.png */,
+				7FA91206169C417D00767CCF /* Icon.png */,
+				7FA91207169C417F00767CCF /* Icon@2x.png */,
+				7FA24185169D5BB40005A37A /* iTunesArtwork */,
+				7FA91209169C418000767CCF /* iTunesArtwork@2x */,
 				7F23CEAD15B6BE7000C99EA5 /* Images */,
 			);
 			name = Resources;
@@ -167,10 +211,10 @@
 		7F23CEAD15B6BE7000C99EA5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				7F23CED315B6E18400C99EA5 /* KYICircleMenuMainButtonNormal.png */,
-				7F23CED415B6E18400C99EA5 /* KYICircleMenuMainButtonNormal@2x.png */,
-				7F23CECA15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png */,
-				7F23CED215B6E18300C99EA5 /* KYICircleMenuMainButtonBackground@2x.png */,
+				7F23CED315B6E18400C99EA5 /* KYICircleMenuCenterButton.png */,
+				7F23CED415B6E18400C99EA5 /* KYICircleMenuCenterButton@2x.png */,
+				7F23CECA15B6E13500C99EA5 /* KYICircleMenuCenterButtonBackground.png */,
+				7F23CED215B6E18300C99EA5 /* KYICircleMenuCenterButtonBackground@2x.png */,
 				7F23CEAE15B6BE7000C99EA5 /* KYICircleMenuButton01.png */,
 				7F23CEAF15B6BE7000C99EA5 /* KYICircleMenuButton01@2x.png */,
 				7F23CEB015B6BE7000C99EA5 /* KYICircleMenuButton02.png */,
@@ -187,11 +231,14 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		7F23CEC615B6DE7D00C99EA5 /* Views */ = {
+		7FA24181169D33060005A37A /* KYCircleMenu */ = {
 			isa = PBXGroup;
 			children = (
+				7FA24182169D33060005A37A /* KYCircleMenu.h */,
+				7FA24183169D33060005A37A /* KYCircleMenu.m */,
 			);
-			path = Views;
+			name = KYCircleMenu;
+			path = ../KYCircleMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +267,7 @@
 		7F23CE7A15B6B11800C99EA5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Kjuly;
 			};
 			buildConfigurationList = 7F23CE7D15B6B11800C99EA5 /* Build configuration list for PBXProject "KYCircleMenuDemo" */;
@@ -258,10 +305,28 @@
 				7F23CEC315B6BE7000C99EA5 /* KYICircleMenuButton05@2x.png in Resources */,
 				7F23CEC415B6BE7000C99EA5 /* KYICircleMenuButton06.png in Resources */,
 				7F23CEC515B6BE7000C99EA5 /* KYICircleMenuButton06@2x.png in Resources */,
-				7F23CECE15B6E13500C99EA5 /* KYICircleMenuMainButtonBackground.png in Resources */,
-				7F23CED515B6E18500C99EA5 /* KYICircleMenuMainButtonBackground@2x.png in Resources */,
-				7F23CED615B6E18500C99EA5 /* KYICircleMenuMainButtonNormal.png in Resources */,
-				7F23CED715B6E18500C99EA5 /* KYICircleMenuMainButtonNormal@2x.png in Resources */,
+				7F23CECE15B6E13500C99EA5 /* KYICircleMenuCenterButtonBackground.png in Resources */,
+				7F23CED515B6E18500C99EA5 /* KYICircleMenuCenterButtonBackground@2x.png in Resources */,
+				7F23CED615B6E18500C99EA5 /* KYICircleMenuCenterButton.png in Resources */,
+				7F23CED715B6E18500C99EA5 /* KYICircleMenuCenterButton@2x.png in Resources */,
+				7FA9120A169C418000767CCF /* Default-568h.png in Resources */,
+				7FA9120B169C418000767CCF /* Default-568h@2x.png in Resources */,
+				7FA9120C169C418000767CCF /* Default-Landscape@2x~ipad.png in Resources */,
+				7FA9120D169C418000767CCF /* Default-Landscape~ipad.png in Resources */,
+				7FA9120E169C418000767CCF /* Default-Portrait@2x~ipad.png in Resources */,
+				7FA9120F169C418000767CCF /* Default-Portrait~ipad.png in Resources */,
+				7FA91210169C418000767CCF /* Default.png in Resources */,
+				7FA91211169C418000767CCF /* Default@2x.png in Resources */,
+				7FA91212169C418000767CCF /* Icon-72.png in Resources */,
+				7FA91213169C418000767CCF /* Icon-72@2x.png in Resources */,
+				7FA91214169C418000767CCF /* Icon-Small-50.png in Resources */,
+				7FA91215169C418000767CCF /* Icon-Small-50@2x.png in Resources */,
+				7FA91216169C418000767CCF /* Icon-Small.png in Resources */,
+				7FA91217169C418000767CCF /* Icon-Small@2x.png in Resources */,
+				7FA91218169C418000767CCF /* Icon.png in Resources */,
+				7FA91219169C418000767CCF /* Icon@2x.png in Resources */,
+				7FA9121B169C418000767CCF /* iTunesArtwork@2x in Resources */,
+				7FA24186169D5BB90005A37A /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,9 +339,9 @@
 			files = (
 				7F23CE9415B6B11800C99EA5 /* main.m in Sources */,
 				7F23CE9815B6B11800C99EA5 /* AppDelegate.m in Sources */,
-				7F23CEA115B6B18500C99EA5 /* KYCircleMenu.m in Sources */,
-				7F23CEA415B6B22600C99EA5 /* KYConstants.m in Sources */,
+				7F23CEA415B6B22600C99EA5 /* Constants.m in Sources */,
 				7F23CEAB15B6BABD00C99EA5 /* CircleMenuViewController.m in Sources */,
+				7FA24184169D33060005A37A /* KYCircleMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
