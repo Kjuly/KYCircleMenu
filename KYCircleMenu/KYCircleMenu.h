@@ -38,8 +38,8 @@ typedef enum {
   BOOL       isClosed_;
 }
 
-@property (nonatomic, retain) UIView   * menu;
-@property (nonatomic, retain) UIButton * centerButton;
+@property (nonatomic, strong) UIView   * menu;
+@property (nonatomic, strong) UIButton * centerButton;
 @property (nonatomic, assign) BOOL       isOpening;
 @property (nonatomic, assign) BOOL       isInProcessing;
 @property (nonatomic, assign) BOOL       isClosed;
