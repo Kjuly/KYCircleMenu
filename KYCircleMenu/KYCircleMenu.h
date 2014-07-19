@@ -49,13 +49,13 @@
  *
  * \returns An KYCircleMenu instance
  */
-- (id)      initWithButtonCount:(NSInteger)buttonCount
-                       menuSize:(CGFloat)menuSize
-                     buttonSize:(CGFloat)buttonSize
-          buttonImageNameFormat:(NSString *)buttonImageNameFormat
-               centerButtonSize:(CGFloat)centerButtonSize
-          centerButtonImageName:(NSString *)centerButtonImageName
-centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
+- (instancetype)initWithButtonCount:(NSInteger)buttonCount
+                           menuSize:(CGFloat)menuSize
+                         buttonSize:(CGFloat)buttonSize
+              buttonImageNameFormat:(NSString *)buttonImageNameFormat
+                   centerButtonSize:(CGFloat)centerButtonSize
+              centerButtonImageName:(NSString *)centerButtonImageName
+    centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
 
 /*! Run action for buttons around.
  *  Override this message to do custom jobs,

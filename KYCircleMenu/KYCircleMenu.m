@@ -66,13 +66,13 @@ static CGFloat defaultTriangleHypotenuse_,
 }
 
 // Designated initializer
-- (id)      initWithButtonCount:(NSInteger)buttonCount
-                       menuSize:(CGFloat)menuSize
-                     buttonSize:(CGFloat)buttonSize
-          buttonImageNameFormat:(NSString *)buttonImageNameFormat
-               centerButtonSize:(CGFloat)centerButtonSize
-          centerButtonImageName:(NSString *)centerButtonImageName
-centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName
+- (instancetype)initWithButtonCount:(NSInteger)buttonCount
+                           menuSize:(CGFloat)menuSize
+                         buttonSize:(CGFloat)buttonSize
+              buttonImageNameFormat:(NSString *)buttonImageNameFormat
+                   centerButtonSize:(CGFloat)centerButtonSize
+              centerButtonImageName:(NSString *)centerButtonImageName
+    centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName
 {
   if (self = [self init]) {
     buttonCount_                     = buttonCount;
@@ -84,13 +84,13 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName
     centerButtonBackgroundImageName_ = centerButtonBackgroundImageName;
     
     // Defualt value for triangle hypotenuse
-    defaultTriangleHypotenuse_     = (menuSize - buttonSize) / 2.f;
+    defaultTriangleHypotenuse_     = (menuSize - buttonSize) * .5f;
     minBounceOfTriangleHypotenuse_ = defaultTriangleHypotenuse_ - 12.f;
     maxBounceOfTriangleHypotenuse_ = defaultTriangleHypotenuse_ + 12.f;
-    maxTriangleHypotenuse_         = kKYCircleMenuViewHeight / 2.f;
+    maxTriangleHypotenuse_         = kKYCircleMenuViewHeight * .5f;
     
     // Buttons' origin frame
-    CGFloat originX = (menuSize_ - centerButtonSize_) / 2;
+    CGFloat originX = (menuSize_ - centerButtonSize_) * .5f;
     buttonOriginFrame_ =
       (CGRect){{originX, originX}, {centerButtonSize_, centerButtonSize_}};
   }
@@ -144,7 +144,7 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName
   
   // Center Menu View
   CGRect centerMenuFrame =
-    CGRectMake((viewWidth - menuSize_) / 2, (viewHeight - menuSize_) / 2, menuSize_, menuSize_);
+    CGRectMake((viewWidth - menuSize_) * .5f, (viewHeight - menuSize_) * .5f, menuSize_, menuSize_);
   menu_ = [[UIView alloc] initWithFrame:centerMenuFrame];
   [menu_ setAlpha:0.f];
   [self.view addSubview:menu_];
@@ -164,8 +164,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName
   
   // Main Button
   CGRect mainButtonFrame =
-    CGRectMake((CGRectGetWidth(self.view.frame) - centerButtonSize_) / 2.f,
-               (CGRectGetHeight(self.view.frame) - centerButtonSize_) / 2.f,
+    CGRectMake((CGRectGetWidth(self.view.frame) - centerButtonSize_) * .5f,
+               (CGRectGetHeight(self.view.frame) - centerButtonSize_) * .5f,
                centerButtonSize_, centerButtonSize_);
   centerButton_ = [[UIButton alloc] initWithFrame:mainButtonFrame];
   [centerButton_ setBackgroundImage:[UIImage imageNamed:self.centerButtonBackgroundImageName]
@@ -347,8 +347,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName
   //   -----      x: degree
   //     a
   //
-  CGFloat centerBallMenuHalfSize = menuSize_         / 2.f;
-  CGFloat buttonRadius           = centerButtonSize_ / 2.f;
+  CGFloat centerBallMenuHalfSize = menuSize_         * .5f;
+  CGFloat buttonRadius           = centerButtonSize_ * .5f;
   if (! triangleHypotenuse) triangleHypotenuse = defaultTriangleHypotenuse_; // Distance to Ball Center
   
   //
