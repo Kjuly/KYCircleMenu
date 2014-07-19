@@ -10,24 +10,27 @@
 
 @implementation CircleMenuViewController
 
-- (void)dealloc {
-  [super dealloc];
-}
 
-- (id)init {
-  if (self = [super init])
+- (id)init
+{
+  if (self = [super init]) {
     [self setTitle:@"KYCircleMenu"];
+  }
   return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
   [super viewDidLoad];
+  
   // Modify buttons' style in circle menu
-  for (UIButton * button in [self.menu subviews])
+  for (UIButton * button in [self.menu subviews]) {
     [button setAlpha:.95f];
+  }
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
@@ -42,16 +45,16 @@
 //            /|\       /|\        /|\       /|\       /|\       /|\
 // TAG:                             3       3   4     4   5     4 5 6
 //
-- (void)runButtonActions:(id)sender {
+- (void)runButtonActions:(id)sender
+{
   [super runButtonActions:sender];
   
   // Configure new view & push it with custom |pushViewController:| method
   UIViewController * viewController = [[UIViewController alloc] init];
   [viewController.view setBackgroundColor:[UIColor blackColor]];
-  [viewController setTitle:[NSString stringWithFormat:@"View %d", [sender tag]]];
+  [viewController setTitle:[NSString stringWithFormat:@"View %ld", [sender tag]]];
   // Use KYCircleMenu's |-pushViewController:| to push vc
   [self pushViewController:viewController];
-  [viewController release];
 }
 
 @end

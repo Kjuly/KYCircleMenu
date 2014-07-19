@@ -24,7 +24,6 @@
                                      * centerButtonImageName,
                                      * centerButtonBackgroundImageName;
 
-- (void)_releaseSubviews;
 - (void)_setupNotificationObserver;
 
 // Toggle menu beween open & closed
@@ -60,19 +59,10 @@ static CGFloat defaultTriangleHypotenuse_,
             centerButtonImageName = centerButtonImageName_,
   centerButtonBackgroundImageName = centerButtonBackgroundImageName_;
 
--(void)dealloc {
-  self.buttonImageNameFormat =
-    self.centerButtonImageName =
-    self.centerButtonBackgroundImageName = nil;
+- (void)dealloc
+{
   // Release subvies & remove notification observer
-  [self _releaseSubviews];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:kKYNCircleMenuClose object:nil];
-  [super dealloc];
-}
-
-- (void)_releaseSubviews {
-  self.centerButton = nil;
-  self.menu         = nil;
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 // Designated initializer
@@ -82,7 +72,8 @@ static CGFloat defaultTriangleHypotenuse_,
           buttonImageNameFormat:(NSString *)buttonImageNameFormat
                centerButtonSize:(CGFloat)centerButtonSize
           centerButtonImageName:(NSString *)centerButtonImageName
-centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
+centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName
+{
   if (self = [self init]) {
     buttonCount_                     = buttonCount;
     menuSize_                        = menuSize;
@@ -107,9 +98,9 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 }
 
 // Secondary initializer
-- (id)init {
-  self = [super init];
-  if (self) {
+- (id)init
+{
+  if (self = [super init]) {
     isInProcessing_ = NO;
     isOpening_      = NO;
     isClosed_       = YES;
@@ -121,7 +112,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   return self;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
   // Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
   
@@ -131,18 +123,19 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 #pragma mark - View lifecycle
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+- (void)loadView
+{
   CGFloat viewHeight =
     (self.navigationController.isNavigationBarHidden
       ? kKYCircleMenuViewHeight : kKYCircleMenuViewHeight - kKYCircleMenuNavigationBarHeight);
   CGRect frame = CGRectMake(0.f, 0.f, kKYCircleMenuViewWidth, viewHeight);
   UIView * view = [[UIView alloc] initWithFrame:frame];
   self.view = view;
-  [view release];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
   [super viewDidLoad];
   
   // Constants
@@ -167,7 +160,6 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
             forState:UIControlStateNormal];
     [button addTarget:self action:@selector(runButtonActions:) forControlEvents:UIControlEventTouchUpInside];
     [self.menu addSubview:button];
-    [button release];
   }
   
   // Main Button
@@ -189,12 +181,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
   [self _setupNotificationObserver];
 }
 
-- (void)viewDidUnload {
-  [super viewDidUnload];
-  [self _releaseSubviews];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
   [super viewWillAppear:animated];
   
 #ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
@@ -209,7 +197,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
                afterDelay:.3f];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
   // Return YES for supported orientations
   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -217,7 +206,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 #pragma mark - Publich Button Action
 
 // Run action depend on button, it'll be implemented by subclass
-- (void)runButtonActions:(id)sender {
+- (void)runButtonActions:(id)sender
+{
 #ifndef KY_CIRCLEMENU_WITH_NAVIGATIONBAR
   [self.navigationController setNavigationBarHidden:NO animated:YES];
 #endif
@@ -227,7 +217,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 }
 
 // Push View Controller
-- (void)pushViewController:(id)viewController {
+- (void)pushViewController:(id)viewController
+{
   [UIView animateWithDuration:.3f
                         delay:0.f
                       options:UIViewAnimationOptionCurveEaseInOut
@@ -250,9 +241,10 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 }
 
 // Open center menu view
-- (void)open {
-  if (isOpening_)
-    return;
+- (void)open
+{
+  if (isOpening_) return;
+  
   isInProcessing_ = YES;
   // Show buttons with animation
   [UIView animateWithDuration:.3f
@@ -279,7 +271,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 }
 
 // Recover to normal status
-- (void)recoverToNormalStatus {
+- (void)recoverToNormalStatus
+{
   [self _updateButtonsLayoutWithTriangleHypotenuse:maxTriangleHypotenuse_];
   [UIView animateWithDuration:.3f
                         delay:0.f
@@ -303,7 +296,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 #pragma mark - Private Methods
 
 // Setup notification observer
-- (void)_setupNotificationObserver {
+- (void)_setupNotificationObserver
+{
   // Add Observer for close self
   // If |centerMainButton_| post cancel notification, do it
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -313,12 +307,14 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 }
 
 // Toggle Circle Menu
-- (void)_toggle:(id)sender {
+- (void)_toggle:(id)sender
+{
   (isClosed_ ? [self open] : [self _close:nil]);
 }
 
 // Close menu to hide all buttons around
-- (void)_close:(NSNotification *)notification {
+- (void)_close:(NSNotification *)notification
+{
   if (isClosed_)
     return;
   
@@ -340,7 +336,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 }
 
 // Update buttons' layout with the value of triangle hypotenuse that given
-- (void)_updateButtonsLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse {
+- (void)_updateButtonsLayoutWithTriangleHypotenuse:(CGFloat)triangleHypotenuse
+{
   //
   //  Triangle Values for Buttons' Position
   // 
@@ -452,7 +449,8 @@ centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName {
 }
 
 // Set Frame for button with special tag
-- (void)_setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin {
+- (void)_setButtonWithTag:(NSInteger)buttonTag origin:(CGPoint)origin
+{
   UIButton * button = (UIButton *)[self.menu viewWithTag:buttonTag];
   [button setFrame:CGRectMake(origin.x, origin.y, centerButtonSize_, centerButtonSize_)];
   button = nil;
