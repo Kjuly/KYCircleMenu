@@ -31,8 +31,8 @@
   BOOL       isClosed_;
 }
 
-@property (nonatomic, retain) UIView   * menu;
-@property (nonatomic, retain) UIButton * centerButton;
+@property (nonatomic, strong) UIView   * menu;
+@property (nonatomic, strong) UIButton * centerButton;
 @property (nonatomic, assign) BOOL       isOpening;
 @property (nonatomic, assign) BOOL       isInProcessing;
 @property (nonatomic, assign) BOOL       isClosed;
@@ -49,13 +49,13 @@
  *
  * \returns An KYCircleMenu instance
  */
-- (id)      initWithButtonCount:(NSInteger)buttonCount
-                       menuSize:(CGFloat)menuSize
-                     buttonSize:(CGFloat)buttonSize
-          buttonImageNameFormat:(NSString *)buttonImageNameFormat
-               centerButtonSize:(CGFloat)centerButtonSize
-          centerButtonImageName:(NSString *)centerButtonImageName
-centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
+- (instancetype)initWithButtonCount:(NSInteger)buttonCount
+                           menuSize:(CGFloat)menuSize
+                         buttonSize:(CGFloat)buttonSize
+              buttonImageNameFormat:(NSString *)buttonImageNameFormat
+                   centerButtonSize:(CGFloat)centerButtonSize
+              centerButtonImageName:(NSString *)centerButtonImageName
+    centerButtonBackgroundImageName:(NSString *)centerButtonBackgroundImageName;
 
 /*! Run action for buttons around.
  *  Override this message to do custom jobs,
