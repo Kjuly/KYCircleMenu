@@ -1,3 +1,7 @@
+<p align="center" >
+  <img src="https://raw.github.com/Kjuly/KYCircleMenu/dev/LOGO.png" alt="" title="KYCircleMenu">
+</p>
+
 KYCircleMenu
 ============
 
